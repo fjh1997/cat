@@ -82,5 +82,5 @@ Get-NetAdapter
 New-NetNat -Name wgservernat -InternalIPInterfaceAddressPrefix 10.7.0.0/24
 Get-NetNat 
 ```
-也可以用这个：https://github.com/micahmo/WgServerforWindows
-参考：https://kenvix.com/post/setup-nat-on-windows/
+<br>也可以用这个：https://github.com/micahmo/WgServerforWindows
+<br>参考：https://kenvix.com/post/setup-nat-on-windows/
