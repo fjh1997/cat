@@ -5,82 +5,78 @@ tags:
 ---
 
 
-# Kali Linux `apt-get update` 404 及密钥过期解决方法
+尝试 apt-get update，结果发现404无法连接
 
-当尝试执行 `apt-get update` 报错或无法连接时，可以按照以下步骤排查并解决。
+1.第一步判断是DNS解析出了问题.重设DNS：
 
-## 第一步：检查并重设 DNS 解析
-
-如果发现无法连接到服务器，首先判断是否为 DNS 解析问题。
-
-1. 编辑配置文件：
 ```bash
-nano /etc/resolv.conf
 
+nano /etc/resolv.conf
 ```
 
+添加
 
-2. 添加以下公共 DNS 服务器：
-```text
+```bash
+
 nameserver 8.8.8.8
 nameserver 114.114.114.114
-
 ```
 
-
-
-## 第二步：处理密钥过期问题 (EXPKEYSIG)
-
-在执行 `apt-get update` 时，如果提示如下错误：
-
-> `The following signatures were invalid: EXPKEYSIG ED444FF07D8D0BF6 Kali Linux Repository <devel@kali.org>`
-
-这意味着系统的仓库密钥已过期，需要重新导入。
-
-### 1. 尝试通过 `apt-key` 更新（常规方法）
-
-通常我们会尝试从密钥服务器获取：
+2.现在尝试
 
 ```bash
-apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys 7D8D0BF6
 
-```
-
-### 2. 解决 `gnupg` 未安装的矛盾
-
-如果执行上述命令提示：
-
-> `E: gnupg, gnupg2 and gnupg1 do not seem to be installed, but one of them is required for this operation`
-
-由于源索引还未更新，此时无法通过 `apt-get install gnupg` 直接安装，会形成死循环。
-
-### 3. 强行下载并安装 Keyring 软件包
-
-为了打破死循环，我们需要直接下载 `.deb` 格式的密钥包进行离线安装：
-
-1. **下载密钥包**（如果提示证书不受信任，需加上 `--no-check-certificate` 参数）：
-```bash
-wget https://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2018.1_all.deb --no-check-certificate
-
-```
-
-
-2. **本地安装该包**：
-```bash
-apt install ./kali-archive-keyring_2018.1_all.deb
-
-```
-
-
-
-## 第三步：完成更新
-
-安装完最新的密钥包后，即可正常更新索引并升级系统：
-
-```bash
 apt-get update
-
 ```
 
+如果提示：The following signatures were invalid: EXPKEYSIG ED444FF07D8D0BF6 Kali Linux Repository <devel@kali.org>
+
+那么意思是说密钥过期，就要重设密钥
+
+于是键入
+
+```bash
+
+apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys 7D8D0BF6
+```
+
+重设密钥
+
+但是发现提示：E: gnupg, gnupg2 and gnupg1 do not seem to be installed, but one of them is required for this operation
+
+这下提示gnupg没装，于是需要我们安装：
+
+```bash
+
+apt-get install gnupg
+```
+
+但是由于源没更新，索引仍然无法获得，apt无法安装gbupg的包（十分矛盾）
+
+所以我们直接强行获取密钥：
+
+```bash
+
+wget https://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2018.1_all.deb
+apt install ./kali-archive-keyring_2018.1_all.deb
+```
+
+但是可能会提示 ERROR: The certificate of 'mirrors.neusoft.edu.cn' is not trusted.
+
+这时需要在wget里加参数 --no-check-certificate，也就是键入
+
+```bash
+
+wget https://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2018.1_all.deb --no-check-certificate
+```
+
+然后安装
+
+```bash
+
+apt install ./kali-archive-keyring_2018.1_all.deb
+```
+
+接下来apt-get update就可行了。
 
 
