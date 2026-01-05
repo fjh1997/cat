@@ -1,0 +1,16 @@
+---
+title: word表格无法缩小单元格的解决方法之一
+date: 2023-06-14 18:28:06
+tags:
+---
+
+表格是教务系统直接导出的，想缩小为一页，结果发现无法缩小某些单元格，如下“在校期间科研成果“这一栏：
+![请添加图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/a7cdf319266fe8f77e392e171883c055.png)
+试过按住ctrl等多种方法都无效。于是经过检查发现这个单元格本身就是多个单元格合并来的，所以不能调整大小，因此需要拆分还原回去。
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/e0aba3bc6e2b1455b609f560303a6f6b.png)
+拆分表格后可能会看到以下提示：
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/049b6e1a17f33ceb944fe3aa928b39ee.png)
+说明该单元格是十个单元格合并成的。调整行数，比如5，然后就能成功拆分。
+
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/3745ec55488766c406a19e1d93a1b5c0.png)
+之后删去其中一行然后合并单元格即可。
