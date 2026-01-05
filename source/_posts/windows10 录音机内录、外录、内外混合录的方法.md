@@ -1,0 +1,24 @@
+---
+title: windows10 录音机内录、外录、内外混合录的方法
+date: 2020-02-22 19:48:44
+tags:
+---
+
+打开声音设置
+
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/dacc844d16ca3c0b7ed9c06076997fd4.png)
+弹出的页面中选择声音控制面板
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/76d05475a7e1607e9f9db7e9e93a3fe8.png)
+选择“**录制**”，此时默认设备是麦克风，此时默认为**外录模式**
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/3e3ac23f011c817f669adb440e4666f5.png)
+启用并设置立体声混音，如果没看到的话，请在**显示禁用的设备**上打勾
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/f87d645bc24d0150ee3315c514ecc9e1.png)
+此时为**内录模式**
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/fc04fdfcd35d3a8cb48213aea6f8ce77.png)
+在麦克风上面选择右键属性
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/39a9f573f2321d2b4ed5c1e4c966fe30.png)
+勾选侦听，在下面选择扬声器，此时为**内外录混合录制模式**。
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/2ea79b434c2d1c06b8814d182697681a.png)
+在内外混合录制的情况下你麦克风感应到的声音会立刻在扬声器里面重复发声，从而起到混合录制的效果。
+此时使用录音机录制即可。
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/eed838f9c1dfe001e90ffa87b61fcc8a.png)
