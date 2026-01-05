@@ -1,0 +1,26 @@
+---
+title: 解决stm32驱动LCD1602A时不显示第二行的问题
+date: 2023-10-04 21:27:06
+tags:
+---
+
+
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/8cbf8d89d98ecf99f66c311ee2ac8ce3.png)
+
+
+根据[这个教程](https://www.cnblogs.com/sheepeach/p/STM32F103_LCD1602.html)，用仿真测试可以成功，但实际上上真机只显示第一行。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/ec84656513d94698b8c86318754b03b2.png)
+考虑到可能是电压的问题，我外接的是和stm32一样的3.3v，但实际上lcd的额定电压是5v，于是换为5V，结果变这样了：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/3fd897d5f03742749f061a1a66e2975c.png)
+只能恢复电压3.3v，再网上找找，发现：
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/9c3dc7c13297eada7bc570f7013389f7.png)
+于是尝试了两次0x38：
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/c8a58c86b621be3fb427b3fc2628b250.png)
+结果变成这样了：
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/3cba8348b8c56b4c2e5487809697cc1d.jpeg)
+仔细看有两行，但不是文字，是淡淡的方块。网上还有人说要发送0x38四次的，都试了，还是没用。对了数据手册，指令确实是0x38,试了别的指令比如光标显示啥的可以，唯独
+这个指令不行。正当要放弃的时候，灵机一动，负负得正，既然单纯的5V和两次0x38指令都不行，那么结合起来会怎么样呢？试了试：
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/8576a16d3264b6fb086f58a298f39a66.jpeg)
+居然可以了，剩下的只要调整电位器就行，于是调整了下，完美！：
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/8784bb939b68756c500a12bca2700aa6.jpeg)
+
