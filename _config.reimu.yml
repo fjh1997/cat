@@ -394,6 +394,11 @@ giscus:
   # lang: zh-CN # deprecated, use html.lang instead
 
 # https://disqus.com
+utterances:
+  enable: true
+  repo: fjh1997/CSDN # Change this to "Your GitHub Username/The Repository Name" used for storing blog comments
+  issue_term: title
+  theme: github-light
 disqus:
   enable: false
   shortname: # your disqus shortname
