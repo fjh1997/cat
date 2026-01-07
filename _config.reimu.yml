@@ -398,7 +398,7 @@ utterances:
   enable: true
   repo: fjh1997/CSDN # Change this to "Your GitHub Username/The Repository Name" used for storing blog comments
   issue_term: title
-  theme: github-light
+  theme: auto
 disqus:
   enable: false
   shortname: # your disqus shortname
