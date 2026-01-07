@@ -687,8 +687,8 @@ internal_theme:
   light:
     # --- 变量名仍为 red，但内容已替换为蓝色 (Light Mode) ---
     --red-0: "#004a99"       # 深蓝
-    --red-1: "#0056b3"       # 较深蓝
-    --red-2: "#007bff"       # 标准蓝 (原 bright red 位置)
+    --red-1: "#0088ff"       # 较深蓝
+    --red-2: "#009bff"       # 标准蓝 (原 bright red 位置)
     --red-3: "#4da3ff"       # 亮蓝
     --red-4: "#99cbff"       # 浅蓝
     --red-5: "#e6f2ff"       # 极浅蓝 (背景用)
