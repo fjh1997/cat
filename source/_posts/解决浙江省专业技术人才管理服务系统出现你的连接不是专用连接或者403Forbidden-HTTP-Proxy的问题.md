@@ -1,0 +1,23 @@
+---
+title: 解决浙江省专业技术人才管理服务系统出现你的连接不是专用连接或者403Forbidden HTTP Proxy的问题
+date: 2026-01-23 21:13:19
+tags:
+---
+一开始出现了这样的问题  
+![20260123211452](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260123211452.png)  
+点击高级之后出现  
+![20260123211528](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260123211528.png)  
+点进去之后  
+![20260123211408](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260123211408.png)  
+通过分析网络数据包发现ip地址是：  
+![20260123211748](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260123211748.png)  
+也就是  
+[2409:8728:cff:2038::1:2]:443  
+之后去itdog看了一下  
+![20260123211908](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260123211908.png)  
+发现只有10.13%解析到这个ip地址  
+![20260123212052](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260123212052.png)  
+而这些ip地址恰好全是国外DNS解析的。  
+尝试修改系统的DNS为国内的，无效，之后在浏览器设置里面发现了一个开关：  
+![20260123212144](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260123212144.png)  
+把这个开关关掉，不使用安全DNS，这样就不会用国外的DNS解析了。毕竟安全DNS和系统内置DNS不一样走的是HTTPS协议，连的国外服务器。
