@@ -114,3 +114,5 @@ feed:
   order_by: -date
   icon: icon.png
   autodiscovery: true
+skip_render:
+  - "baidu_verify_codeva-8w4x8eboZp"
