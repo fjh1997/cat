@@ -298,9 +298,9 @@ clipboard:
 # Analytics
 ########################################
 
-baidu_analytics: false
-google_analytics: false
-clarity: false
+baidu_analytics: true
+google_analytics: true
+clarity: true
 
 ########################################
 # Comment system
