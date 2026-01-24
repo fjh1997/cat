@@ -114,4 +114,4 @@ feed:
   icon: icon.png
   autodiscovery: true
 skip_render:
-  - "baidu_verify_codeva-8w4x8eboZp"
+  - "baidu_verify_codeva-8w4x8eboZp.html"
