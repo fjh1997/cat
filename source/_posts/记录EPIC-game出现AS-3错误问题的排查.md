@@ -49,5 +49,5 @@ tags:
 [2026.01.13-12.07.12:820][976]LogHttp: Warning: 000001D76E82EDC0: libcurl info message cache 14 (OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to account-public-service-prod03.ol.epicgames.com:443 )
 ```
 很明显是libcurl走代理了目标地址是127.0.0.1:52345，但是系统里面又没有设置全局的系统代理，之后使用netstat查了一下发现是xray.exe在监听。
-![20260113212448](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images20260113212448.png)
+![20260113212448](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/20260113212448.png)
 通过排查发现是v2raya服务启动的，关掉这个之后就能正常连通了，虽然没找到v2raya是在哪里修改libcurl的代理的。
