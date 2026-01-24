@@ -298,9 +298,9 @@ clipboard:
 # Analytics
 ########################################
 
-baidu_analytics: true
-google_analytics: true
-clarity: true
+baidu_analytics: 5da340ea9593c887a216551c55233b7d
+google_analytics: GTM-MGS43KCV
+clarity: v6glba4v65
 
 ########################################
 # Comment system
