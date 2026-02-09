@@ -1,5 +1,6 @@
 ---
 title: linux bash多行写入文件不转义
+abbrlink: 25400
 date: 2021-02-10 21:25:55
 tags:
 ---

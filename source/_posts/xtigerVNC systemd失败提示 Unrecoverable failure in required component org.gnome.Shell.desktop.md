@@ -1,5 +1,8 @@
 ---
-title: xtigerVNC systemd失败提示 Unrecoverable failure in required component org.gnome.Shell.desktop
+title: >-
+  xtigerVNC systemd失败提示 Unrecoverable failure in required component
+  org.gnome.Shell.desktop
+abbrlink: 52319
 date: 2022-02-23 10:12:55
 tags:
 ---

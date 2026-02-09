@@ -1,5 +1,6 @@
 ---
 title: 解决银河麒麟os上steam++无法启动加速的问题
+abbrlink: 37662
 date: 2024-11-12 19:38:07
 tags:
 ---

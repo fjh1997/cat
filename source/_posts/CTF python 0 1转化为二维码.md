@@ -1,5 +1,6 @@
 ---
 title: CTF python 0 1转化为二维码
+abbrlink: 42146
 date: 2020-12-23 16:56:36
 tags:
 ---

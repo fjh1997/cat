@@ -1,5 +1,6 @@
 ---
 title: docker使用代理proxy拉取镜像的注意事项
+abbrlink: 39991
 date: 2019-09-14 16:05:05
 tags:
 ---

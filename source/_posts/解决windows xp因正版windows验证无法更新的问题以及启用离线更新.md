@@ -1,5 +1,6 @@
 ---
 title: 解决windows xp因正版windows验证无法更新的问题以及启用离线更新
+abbrlink: 12902
 date: 2019-12-23 18:03:52
 tags:
 ---

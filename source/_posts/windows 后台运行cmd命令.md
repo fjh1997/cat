@@ -1,5 +1,6 @@
 ---
 title: windows 后台运行cmd命令
+abbrlink: 55141
 date: 2022-02-04 21:39:47
 tags:
 ---

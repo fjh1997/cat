@@ -1,5 +1,6 @@
 ---
 title: MikTex+texworks插入数学公式示例
+abbrlink: 21526
 date: 2019-06-11 17:33:35
 tags:
 ---

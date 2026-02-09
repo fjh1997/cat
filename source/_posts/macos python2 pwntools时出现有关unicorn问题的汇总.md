@@ -1,5 +1,6 @@
 ---
 title: macos python2 pwntools时出现有关unicorn问题的汇总
+abbrlink: 28933
 date: 2020-08-24 21:23:09
 tags:
 ---

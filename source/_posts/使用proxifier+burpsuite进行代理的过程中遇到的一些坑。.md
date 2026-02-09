@@ -1,5 +1,6 @@
 ---
 title: 使用proxifier+burpsuite进行代理的过程中遇到的一些坑。
+abbrlink: 1637
 date: 2020-06-05 09:56:17
 tags:
 ---

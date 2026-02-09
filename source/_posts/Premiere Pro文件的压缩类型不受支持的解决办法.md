@@ -1,5 +1,6 @@
 ---
 title: Premiere Pro文件的压缩类型不受支持的解决办法
+abbrlink: 9756
 date: 2020-05-24 10:36:39
 tags:
 ---

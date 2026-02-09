@@ -1,5 +1,6 @@
 ---
 title: photoshop 错误：暂存盘已满打不开的解决方法
+abbrlink: 13034
 date: 2019-03-09 20:39:59
 tags:
 ---

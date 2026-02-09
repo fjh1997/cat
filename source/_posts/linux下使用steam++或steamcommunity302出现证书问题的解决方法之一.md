@@ -1,5 +1,6 @@
 ---
 title: linux下使用steam++或steamcommunity302出现证书问题的解决方法之一
+abbrlink: 42399
 date: 2023-06-24 00:23:16
 tags:
 ---

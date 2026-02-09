@@ -1,5 +1,6 @@
 ---
 title: PHPstudy情况下上传图片马需要的.htaccess文件
+abbrlink: 44075
 date: 2024-06-01 21:44:00
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
-title: 解决64位栈溢出ret2lib时的 do_system  movaps xmmword ptr [rsp + 0x40], xmm0 crash的问题
+title: '解决64位栈溢出ret2lib时的 do_system  movaps xmmword ptr [rsp + 0x40], xmm0 crash的问题'
+abbrlink: 52172
 date: 2020-04-25 19:44:26
 tags:
 ---

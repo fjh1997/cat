@@ -1,5 +1,7 @@
 ---
-title: 构建一个docker，该docker包含Tensorflow库，并支持GPU加速，这样，别的用户可以下载该docker直接使用Tensorflow进行GPU开发（测试：电缆破损缺陷深度学习识别）
+title: >-
+  构建一个docker，该docker包含Tensorflow库，并支持GPU加速，这样，别的用户可以下载该docker直接使用Tensorflow进行GPU开发（测试：电缆破损缺陷深度学习识别）
+abbrlink: 40921
 date: 2019-06-19 19:24:45
 tags:
 ---

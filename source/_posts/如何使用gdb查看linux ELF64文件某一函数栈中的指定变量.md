@@ -1,5 +1,6 @@
 ---
 title: 如何使用gdb查看linux ELF64文件某一函数栈中的指定变量
+abbrlink: 47092
 date: 2019-12-24 12:55:41
 tags:
 ---

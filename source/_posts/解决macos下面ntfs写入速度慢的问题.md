@@ -1,5 +1,6 @@
 ---
 title: 解决macos下面ntfs写入速度慢的问题
+abbrlink: 1911
 date: 2020-03-23 18:28:52
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: python抽奖程序
+abbrlink: 6526
 date: 2021-04-13 19:52:08
 tags:
 ---

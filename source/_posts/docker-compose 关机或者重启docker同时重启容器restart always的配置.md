@@ -1,5 +1,6 @@
 ---
 title: docker-compose 关机或者重启docker同时重启容器restart always的配置
+abbrlink: 28306
 date: 2019-08-08 17:50:58
 tags:
 ---

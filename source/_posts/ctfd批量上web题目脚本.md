@@ -1,5 +1,6 @@
 ---
 title: ctfd批量上web题目脚本
+abbrlink: 24756
 date: 2021-07-08 12:55:22
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: canon lbp6200 macos下单面双面打印设置
+abbrlink: 61543
 date: 2021-07-25 11:11:46
 tags:
 ---

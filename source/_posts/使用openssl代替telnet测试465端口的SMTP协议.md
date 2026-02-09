@@ -1,5 +1,6 @@
 ---
 title: 使用openssl代替telnet测试465端口的SMTP协议
+abbrlink: 36770
 date: 2020-02-27 12:19:29
 tags:
 ---

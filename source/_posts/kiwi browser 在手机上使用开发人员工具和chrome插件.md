@@ -1,5 +1,6 @@
 ---
 title: kiwi browser 在手机上使用开发人员工具和chrome插件
+abbrlink: 29229
 date: 2021-12-30 10:09:49
 tags:
 ---

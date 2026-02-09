@@ -1,5 +1,6 @@
 ---
 title: lvm分区扩容
+abbrlink: 56256
 date: 2021-05-14 20:40:52
 tags:
 ---

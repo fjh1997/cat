@@ -1,5 +1,6 @@
 ---
 title: 解决CNAME Cross-User Banned
+abbrlink: 53084
 date: 2020-05-01 11:24:07
 tags:
 ---

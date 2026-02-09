@@ -1,5 +1,6 @@
 ---
 title: TL-WAR308 刷openwrt以及魔改8M固件到16M
+abbrlink: 22589
 date: 2021-10-13 20:16:34
 tags:
 ---

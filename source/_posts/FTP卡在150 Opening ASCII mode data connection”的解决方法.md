@@ -1,5 +1,6 @@
 ---
 title: FTP卡在150 Opening ASCII mode data connection”的解决方法
+abbrlink: 58558
 date: 2024-11-19 20:40:11
 tags:
 ---

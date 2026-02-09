@@ -1,5 +1,6 @@
 ---
 title: 家用带宽二级路由openwrt设置ipv6
+abbrlink: 36951
 date: 2020-07-22 11:04:37
 tags:
 ---

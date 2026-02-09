@@ -1,5 +1,6 @@
 ---
 title: 解决burpsuite输入中文乱码
+abbrlink: 19082
 date: 2020-07-09 21:35:48
 tags:
 ---

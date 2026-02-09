@@ -1,5 +1,6 @@
 ---
 title: 关于IDA加载cryptsp.dll符号表失败的问题
+abbrlink: 58443
 date: 2020-08-21 15:12:44
 tags:
 ---

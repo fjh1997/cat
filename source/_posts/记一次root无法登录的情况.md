@@ -1,5 +1,6 @@
 ---
 title: 记一次root无法登录的情况
+abbrlink: 32126
 date: 2024-12-11 16:48:14
 tags:
 ---

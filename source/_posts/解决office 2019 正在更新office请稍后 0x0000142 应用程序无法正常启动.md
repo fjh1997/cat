@@ -1,5 +1,6 @@
 ---
 title: 解决office 2019 正在更新office请稍后 0x0000142 应用程序无法正常启动
+abbrlink: 65428
 date: 2020-04-11 09:44:46
 tags:
 ---

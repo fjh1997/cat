@@ -1,5 +1,6 @@
 ---
 title: 如何从mssql里面导出程序集ASSEMBLY为dll
+abbrlink: 12500
 date: 2024-09-02 19:22:01
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
-title: 关于黑苹果卡在[IGPU] Scheduler Throttle Cap=100ms的解决办法
+title: '关于黑苹果卡在[IGPU] Scheduler Throttle Cap=100ms的解决办法'
+abbrlink: 13013
 date: 2019-12-25 23:20:50
 tags:
 ---

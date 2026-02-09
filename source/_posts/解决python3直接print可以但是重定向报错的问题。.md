@@ -1,5 +1,6 @@
 ---
 title: 解决python3直接print可以但是重定向报错的问题。
+abbrlink: 61488
 date: 2024-01-17 11:59:58
 tags:
 ---

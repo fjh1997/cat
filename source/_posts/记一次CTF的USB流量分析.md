@@ -1,5 +1,6 @@
 ---
 title: 记一次CTF的USB流量分析
+abbrlink: 10389
 date: 2020-04-29 16:20:02
 tags:
 ---

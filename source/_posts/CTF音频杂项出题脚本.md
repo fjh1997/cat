@@ -1,5 +1,6 @@
 ---
 title: CTF音频杂项出题脚本
+abbrlink: 43192
 date: 2023-11-28 18:53:19
 tags:
 ---

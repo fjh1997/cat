@@ -1,5 +1,6 @@
 ---
 title: 解决vscode的terminal乱码
+abbrlink: 45987
 date: 2019-11-09 10:08:12
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: Macos在桌面上打开终端terminal
+abbrlink: 56327
 date: 2020-05-06 13:42:33
 tags:
 ---

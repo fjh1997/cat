@@ -1,5 +1,6 @@
 ---
 title: 初探arm与aarch64虚拟化兼容心得
+abbrlink: 25234
 date: 2021-02-28 14:05:21
 tags:
 ---

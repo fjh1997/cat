@@ -1,5 +1,6 @@
 ---
 title: 解决stm32驱动LCD1602A时不显示第二行的问题
+abbrlink: 202
 date: 2023-10-04 21:27:06
 tags:
 ---

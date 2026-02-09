@@ -1,5 +1,6 @@
 ---
 title: 关于jarvisOJ level0远程打得通本地打不通的问题
+abbrlink: 31428
 date: 2020-07-30 18:31:33
 tags:
 ---

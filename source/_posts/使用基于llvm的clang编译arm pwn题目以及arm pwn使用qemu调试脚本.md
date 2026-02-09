@@ -1,5 +1,6 @@
 ---
 title: 使用基于llvm的clang编译arm pwn题目以及arm pwn使用qemu调试脚本
+abbrlink: 50042
 date: 2021-01-28 19:18:40
 tags:
 ---

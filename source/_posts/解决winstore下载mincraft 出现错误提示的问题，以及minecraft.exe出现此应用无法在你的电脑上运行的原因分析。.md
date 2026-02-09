@@ -1,5 +1,6 @@
 ---
 title: 解决winstore下载mincraft 出现错误提示的问题，以及minecraft.exe出现此应用无法在你的电脑上运行的原因分析。
+abbrlink: 28525
 date: 2023-05-09 18:53:08
 tags:
 ---

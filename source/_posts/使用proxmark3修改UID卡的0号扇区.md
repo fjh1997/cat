@@ -1,5 +1,6 @@
 ---
 title: 使用proxmark3修改UID卡的0号扇区
+abbrlink: 63960
 date: 2020-04-02 18:54:54
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: macos设置默认python3的版本
+abbrlink: 12191
 date: 2021-07-08 12:06:39
 tags:
 ---

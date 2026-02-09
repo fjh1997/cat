@@ -1,5 +1,6 @@
 ---
 title: SW799刷armbian之后一段时间自动关机的解决方法
+abbrlink: 34270
 date: 2024-08-29 12:50:39
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: Mac设置wifi优先级高于有线以太网
+abbrlink: 2599
 date: 2021-03-14 22:14:31
 tags:
 ---

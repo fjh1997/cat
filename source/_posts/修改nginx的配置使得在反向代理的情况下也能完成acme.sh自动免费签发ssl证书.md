@@ -1,5 +1,6 @@
 ---
 title: 修改nginx的配置使得在反向代理的情况下也能完成acme.sh自动免费签发ssl证书
+abbrlink: 54755
 date: 2020-04-26 11:42:34
 tags:
 ---

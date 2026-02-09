@@ -1,5 +1,6 @@
 ---
 title: gradle出现Gradle Core Plugins (plugin is not in org.gradle namespace)错误的解决方法
+abbrlink: 44280
 date: 2020-06-16 22:53:59
 tags:
 ---

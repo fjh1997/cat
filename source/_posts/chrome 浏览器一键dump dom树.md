@@ -1,5 +1,6 @@
 ---
 title: chrome 浏览器一键dump dom树
+abbrlink: 52182
 date: 2021-05-28 22:51:45
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: c语言中fgets()和read()的区别以及pwn题目中需要设置setbuf的原理。
+abbrlink: 53376
 date: 2021-01-30 17:00:12
 tags:
 ---

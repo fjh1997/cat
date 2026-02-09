@@ -1,5 +1,6 @@
 ---
 title: 使用ROPgadget快速寻找arm64 pwn的rop链之ret2csu
+abbrlink: 50248
 date: 2021-01-28 18:26:54
 tags:
 ---

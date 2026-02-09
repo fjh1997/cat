@@ -1,5 +1,6 @@
 ---
 title: 清华源Certificate verification failed解决办法
+abbrlink: 1620
 date: 2023-11-20 22:04:55
 tags:
 ---

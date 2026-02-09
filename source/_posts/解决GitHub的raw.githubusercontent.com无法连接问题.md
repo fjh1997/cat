@@ -1,5 +1,6 @@
 ---
 title: 解决GitHub的raw.githubusercontent.com无法连接问题
+abbrlink: 56752
 date: 2021-01-29 19:41:50
 tags:
 ---

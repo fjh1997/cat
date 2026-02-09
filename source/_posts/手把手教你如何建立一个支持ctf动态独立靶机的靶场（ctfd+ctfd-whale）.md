@@ -1,5 +1,6 @@
 ---
 title: 手把手教你如何建立一个支持ctf动态独立靶机的靶场（ctfd+ctfd-whale）
+abbrlink: 1334
 date: 2019-09-15 14:58:21
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 多网段情况下配置windows防火墙允许ping以及远程打印和网络发现
+abbrlink: 46332
 date: 2019-06-24 08:08:14
 tags:
 ---

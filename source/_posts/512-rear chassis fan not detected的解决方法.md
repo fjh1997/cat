@@ -1,5 +1,6 @@
 ---
 title: 512-rear chassis fan not detected的解决方法
+abbrlink: 32580
 date: 2021-11-19 19:44:15
 tags:
 ---

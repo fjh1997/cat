@@ -1,5 +1,6 @@
 ---
 title: 关于ghidra 9.2版本以上无法反编译pac代码pacia等函数的解决方法
+abbrlink: 27469
 date: 2021-01-21 11:34:14
 tags:
 ---

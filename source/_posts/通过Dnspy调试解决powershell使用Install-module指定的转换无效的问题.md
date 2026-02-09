@@ -1,5 +1,6 @@
 ---
 title: 通过Dnspy调试解决powershell使用Install-module指定的转换无效的问题
+abbrlink: 28048
 date: 2023-05-10 17:53:19
 tags:
 ---

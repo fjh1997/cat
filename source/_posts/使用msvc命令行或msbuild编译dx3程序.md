@@ -1,5 +1,6 @@
 ---
 title: 使用msvc命令行或msbuild编译dx3程序
+abbrlink: 4601
 date: 2023-02-28 23:07:28
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 解决firefox开发插件时候 manifest无错误但依然报错“does not contain a valid manifest”的问题
+abbrlink: 38721
 date: 2020-07-26 18:44:14
 tags:
 ---

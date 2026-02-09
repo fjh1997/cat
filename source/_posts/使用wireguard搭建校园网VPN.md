@@ -1,5 +1,6 @@
 ---
 title: 使用wireguard搭建校园网VPN
+abbrlink: 33122
 date: 2025-12-31 14:52:23
 tags:
 ---

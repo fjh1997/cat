@@ -1,5 +1,6 @@
 ---
 title: Linux记录历史进程的CPU占用量
+abbrlink: 59102
 date: 2020-04-27 21:45:26
 tags:
 ---

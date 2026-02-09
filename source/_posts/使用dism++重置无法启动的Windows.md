@@ -1,5 +1,6 @@
 ---
 title: 使用dism++重置无法启动的Windows
+abbrlink: 28623
 date: 2023-12-26 22:29:41
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 解决手动运行shell命令成功，但在crontab中运行失败但问题
+abbrlink: 30785
 date: 2020-03-07 09:08:50
 tags:
 ---
