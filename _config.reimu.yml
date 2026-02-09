@@ -19,7 +19,7 @@ menu:
     url: /friend
     icon:
 
-banner: "/images/blue.png" # which means themes/reimu/source/images/banner.webp
+banner: "/images/blue.webp" # which means themes/reimu/source/images/banner.webp
 # You can also write it in the form of the following url
 # banner: "https://example.com"
 
