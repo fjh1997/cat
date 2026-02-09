@@ -9,9 +9,9 @@ tags:
 
 
 根据[这个教程](https://www.cnblogs.com/sheepeach/p/STM32F103_LCD1602.html)，用仿真测试可以成功，但实际上上真机只显示第一行。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/ec84656513d94698b8c86318754b03b2.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/ec84656513d94698b8c86318754b03b2.png)
 考虑到可能是电压的问题，我外接的是和stm32一样的3.3v，但实际上lcd的额定电压是5v，于是换为5V，结果变这样了：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/3fd897d5f03742749f061a1a66e2975c.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/3fd897d5f03742749f061a1a66e2975c.png)
 只能恢复电压3.3v，再网上找找，发现：
 ![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/9c3dc7c13297eada7bc570f7013389f7.png)
 于是尝试了两次0x38：
