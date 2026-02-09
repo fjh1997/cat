@@ -1,5 +1,6 @@
 ---
 title: linux我知道的最短shellcode
+abbrlink: 34036
 date: 2020-04-16 11:50:52
 tags:
 ---

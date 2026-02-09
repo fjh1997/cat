@@ -1,5 +1,6 @@
 ---
 title: 解决macos下配置nginx+php-fpm出现 file not found的问题
+abbrlink: 59528
 date: 2020-03-28 22:20:35
 tags:
 ---

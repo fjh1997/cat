@@ -1,5 +1,6 @@
-﻿---
+---
 title: 迁移csdn到hexo
+abbrlink: 14575
 date: 2026-01-05 13:26:46
 tags:
 ---

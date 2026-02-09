@@ -1,5 +1,6 @@
 ---
 title: 记录一次使用ghidra逆向分析斐讯K3官改固件web登录验证的经历
+abbrlink: 49226
 date: 2021-03-05 16:07:20
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 如何在和010editor中粘贴hex
+abbrlink: 25391
 date: 2019-09-12 19:35:11
 tags:
 ---

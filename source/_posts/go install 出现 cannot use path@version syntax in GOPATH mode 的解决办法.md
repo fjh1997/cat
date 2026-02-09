@@ -1,5 +1,6 @@
 ---
 title: go install 出现 cannot use path@version syntax in GOPATH mode 的解决办法
+abbrlink: 12517
 date: 2022-11-19 17:57:02
 tags:
 ---

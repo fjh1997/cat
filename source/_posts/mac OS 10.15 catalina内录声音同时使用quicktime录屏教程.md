@@ -1,5 +1,6 @@
 ---
 title: mac OS 10.15 catalina内录声音同时使用quicktime录屏教程
+abbrlink: 2000
 date: 2020-03-14 21:23:42
 tags:
 ---

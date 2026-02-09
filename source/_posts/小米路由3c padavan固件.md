@@ -1,5 +1,6 @@
 ---
 title: 小米路由3c padavan固件
+abbrlink: 11754
 date: 2021-03-23 23:03:35
 tags:
 ---

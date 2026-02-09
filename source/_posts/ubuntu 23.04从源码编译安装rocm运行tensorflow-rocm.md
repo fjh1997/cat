@@ -1,5 +1,6 @@
 ---
 title: ubuntu 23.04从源码编译安装rocm运行tensorflow-rocm
+abbrlink: 63629
 date: 2023-11-16 19:29:43
 tags:
 ---

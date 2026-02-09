@@ -1,5 +1,6 @@
 ---
 title: pip安装出现ZIP does not support timestamps before 1980 pip
+abbrlink: 517
 date: 2021-06-30 21:55:54
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 构建aosp的时候出现unrecognized module type
+abbrlink: 11186
 date: 2023-03-13 12:08:37
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 解决安卓linux dploy下非root用户的进程在锁屏几分钟之后断网的问题--禁用doze mode。
+abbrlink: 21344
 date: 2020-12-15 13:57:33
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 不用endnote快速写出正确的国标论文引文格式
+abbrlink: 31800
 date: 2022-03-23 18:48:33
 tags:
 ---

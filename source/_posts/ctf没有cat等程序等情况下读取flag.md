@@ -1,5 +1,6 @@
 ---
 title: ctf没有cat等程序等情况下读取flag
+abbrlink: 6887
 date: 2021-07-25 21:32:26
 tags:
 ---

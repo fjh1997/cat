@@ -1,5 +1,6 @@
 ---
 title: powershell批量修改文件编码
+abbrlink: 22390
 date: 2024-01-21 18:24:36
 tags:
 ---

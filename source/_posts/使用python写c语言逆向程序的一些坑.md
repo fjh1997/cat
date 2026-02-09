@@ -1,5 +1,6 @@
 ---
 title: 使用python写c语言逆向程序的一些坑
+abbrlink: 46557
 date: 2020-08-21 19:10:40
 tags:
 ---

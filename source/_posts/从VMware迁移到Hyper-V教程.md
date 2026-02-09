@@ -1,5 +1,6 @@
 ---
 title: 从VMware迁移到Hyper-V教程
+abbrlink: 62899
 date: 2019-09-26 20:21:35
 tags:
 ---

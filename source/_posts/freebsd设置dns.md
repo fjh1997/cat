@@ -1,5 +1,6 @@
 ---
 title: freebsd设置dns
+abbrlink: 17187
 date: 2022-06-02 15:02:00
 tags:
 ---

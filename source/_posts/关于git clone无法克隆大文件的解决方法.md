@@ -1,5 +1,6 @@
 ---
 title: 关于git clone无法克隆大文件的解决方法
+abbrlink: 25824
 date: 2019-06-27 19:10:37
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: debian11 gnome安装fcitix5
+abbrlink: 11621
 date: 2021-11-29 23:29:13
 tags:
 ---

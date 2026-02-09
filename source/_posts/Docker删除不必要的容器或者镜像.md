@@ -1,5 +1,6 @@
 ---
 title: Docker删除不必要的容器或者镜像
+abbrlink: 13129
 date: 2020-08-11 15:54:49
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 手工使用二进制工具修改H大的breed的gpio复位键的心得
+abbrlink: 38543
 date: 2021-10-15 15:34:45
 tags:
 ---

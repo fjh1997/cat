@@ -1,5 +1,8 @@
 ---
-title: 解决segamath中sage.matrix.matrix_symbolic_dense.Matrix_symbolic_dense‘ object has no attribute ‘BKZ‘
+title: >-
+  解决segamath中sage.matrix.matrix_symbolic_dense.Matrix_symbolic_dense‘ object has
+  no attribute ‘BKZ‘
+abbrlink: 36539
 date: 2020-07-05 14:20:23
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 编译与调试adb.exe for windows
+abbrlink: 55932
 date: 2023-03-15 12:52:00
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: MacOs 上面安装pwntools
+abbrlink: 38606
 date: 2020-01-17 23:15:50
 tags:
 ---

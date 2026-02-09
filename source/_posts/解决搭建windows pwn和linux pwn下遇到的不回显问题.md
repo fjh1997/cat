@@ -1,5 +1,6 @@
 ---
 title: 解决搭建windows pwn和linux pwn下遇到的不回显问题
+abbrlink: 55703
 date: 2020-03-23 13:28:29
 tags:
 ---

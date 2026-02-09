@@ -1,5 +1,6 @@
 ---
 title: 使用nginx搭建文件下载服务器
+abbrlink: 56895
 date: 2019-08-06 17:09:19
 tags:
 ---

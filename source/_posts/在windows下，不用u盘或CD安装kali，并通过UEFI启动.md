@@ -1,5 +1,6 @@
 ---
 title: 在windows下，不用u盘或CD安装kali，并通过UEFI启动
+abbrlink: 33929
 date: 2019-05-22 11:16:15
 tags:
 ---

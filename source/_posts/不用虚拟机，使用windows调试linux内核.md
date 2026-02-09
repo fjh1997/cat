@@ -1,5 +1,6 @@
 ---
 title: 不用虚拟机，使用windows调试linux内核
+abbrlink: 51701
 date: 2024-08-03 18:03:09
 tags:
 ---

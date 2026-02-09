@@ -1,5 +1,6 @@
 ---
 title: 用python模拟的MultiByteToWideChar然后WideCharToMultiByte出错情况
+abbrlink: 64617
 date: 2025-10-20 21:49:02
 tags:
 ---

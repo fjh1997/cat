@@ -1,5 +1,6 @@
 ---
 title: 解决运行在kali环境下的pwntools无法给gdb.attach()时候传递gdbscript的问题
+abbrlink: 36793
 date: 2020-03-11 23:08:07
 tags:
 ---

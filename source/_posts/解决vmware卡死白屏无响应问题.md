@@ -1,5 +1,6 @@
 ---
 title: 解决vmware卡死白屏无响应问题
+abbrlink: 16345
 date: 2019-12-23 08:45:39
 tags:
 ---

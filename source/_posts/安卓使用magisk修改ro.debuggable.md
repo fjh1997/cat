@@ -1,5 +1,6 @@
 ---
 title: 安卓使用magisk修改ro.debuggable
+abbrlink: 39185
 date: 2024-01-28 15:22:44
 tags:
 ---
