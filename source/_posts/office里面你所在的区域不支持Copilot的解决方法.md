@@ -1,5 +1,6 @@
 ---
 title: office里面你所在的区域不支持Copilot的解决方法
+abbrlink: 40329
 date: 2026-02-10 00:01:30
 tags:
 ---
