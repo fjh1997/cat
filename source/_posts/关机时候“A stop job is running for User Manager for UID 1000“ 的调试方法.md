@@ -1,5 +1,6 @@
 ---
 title: 关机时候“A stop job is running for User Manager for UID 1000“ 的调试方法
+abbrlink: 18668
 date: 2021-12-11 16:33:19
 tags:
 ---

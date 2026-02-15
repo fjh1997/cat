@@ -1,5 +1,6 @@
 ---
 title: qemu-kvm 实现和windows系统的文件夹共享和剪贴板共享
+abbrlink: 19792
 date: 2021-11-08 11:53:47
 tags:
 ---

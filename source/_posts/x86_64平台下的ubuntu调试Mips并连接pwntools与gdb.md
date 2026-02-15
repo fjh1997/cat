@@ -1,5 +1,6 @@
 ---
 title: x86_64平台下的ubuntu调试Mips并连接pwntools与gdb
+abbrlink: 45563
 date: 2020-05-06 20:10:16
 tags:
 ---

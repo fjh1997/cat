@@ -1,5 +1,6 @@
 ---
 title: teec_initializecontext failed with code 0xffff0008
+abbrlink: 17143
 date: 2024-11-28 09:40:58
 tags:
 ---

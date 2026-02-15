@@ -1,5 +1,6 @@
 ---
 title: Edge浏览器浏览mybank.icbc.com.cn自动跳转ie模式的原因分析
+abbrlink: 21648
 date: 2023-05-14 17:57:37
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: Powershell以字节流的形式输出程序执行结果到文件
+abbrlink: 3702
 date: 2023-03-05 10:57:32
 tags:
 ---

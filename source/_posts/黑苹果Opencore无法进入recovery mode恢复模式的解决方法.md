@@ -1,5 +1,6 @@
 ---
 title: 黑苹果Opencore无法进入recovery mode恢复模式的解决方法
+abbrlink: 45650
 date: 2020-02-04 23:38:03
 tags:
 ---

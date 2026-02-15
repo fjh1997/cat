@@ -1,5 +1,6 @@
 ---
 title: Msfconsol socks4 隧道nmap无法扫描的原因
+abbrlink: 21131
 date: 2024-03-27 20:50:19
 tags:
 ---

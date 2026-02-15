@@ -1,5 +1,6 @@
 ---
 title: frp服务注册以及systemd语法
+abbrlink: 28896
 date: 2019-12-24 09:22:59
 tags:
 ---

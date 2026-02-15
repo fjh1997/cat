@@ -1,5 +1,6 @@
 ---
 title: 使用objcopy选择性修改删除符号表以及其他相关elf段以及gdb debug file 任意读漏洞以及xctf mamadebug writeup
+abbrlink: 128
 date: 2021-05-31 18:27:51
 tags:
 ---

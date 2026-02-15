@@ -1,5 +1,6 @@
 ---
 title: freeBSD 14 CURRENT 笔记本核显独显混合安装 nvidia驱动
+abbrlink: 50612
 date: 2021-12-12 23:25:58
 tags:
 ---

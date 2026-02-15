@@ -1,5 +1,6 @@
 ---
 title: desktop entry不显示原因分析
+abbrlink: 29543
 date: 2021-12-30 12:19:51
 tags:
 ---

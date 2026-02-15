@@ -1,5 +1,6 @@
 ---
 title: gopher协议ssrf phpinput
+abbrlink: 65010
 date: 2024-07-06 15:23:16
 tags:
 ---

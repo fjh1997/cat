@@ -1,5 +1,6 @@
 ---
 title: 如何在windows WSL子系统中使用pwntools以及启用pwndbg
+abbrlink: 59545
 date: 2020-04-14 13:49:39
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: dell optiplex 7090 ssf 注入intel i219 网卡驱动安装exsi 7.0.2
+abbrlink: 29248
 date: 2021-12-21 19:40:00
 tags:
 ---

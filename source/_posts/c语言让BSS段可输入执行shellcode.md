@@ -1,5 +1,6 @@
 ---
 title: c语言让BSS段可输入执行shellcode
+abbrlink: 43991
 date: 2023-10-23 16:39:29
 tags:
 ---

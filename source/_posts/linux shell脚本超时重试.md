@@ -1,5 +1,6 @@
 ---
 title: linux shell脚本超时重试
+abbrlink: 37493
 date: 2020-04-23 11:08:04
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 使得ubuntu18在桌面上打开终端时打开Desktop而不是home以及从源码修改ubuntu软件包的方法
+abbrlink: 9935
 date: 2020-04-19 17:01:23
 tags:
 ---

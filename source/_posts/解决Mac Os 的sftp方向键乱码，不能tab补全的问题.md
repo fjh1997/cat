@@ -1,5 +1,6 @@
 ---
 title: 解决Mac Os 的sftp方向键乱码，不能tab补全的问题
+abbrlink: 15305
 date: 2021-02-01 12:17:11
 tags:
 ---

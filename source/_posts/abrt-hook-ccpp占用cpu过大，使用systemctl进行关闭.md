@@ -1,5 +1,6 @@
 ---
 title: abrt-hook-ccpp占用cpu过大，使用systemctl进行关闭
+abbrlink: 28507
 date: 2020-04-21 22:00:31
 tags:
 ---

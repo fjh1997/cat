@@ -1,5 +1,6 @@
 ---
 title: 解决安卓linux deploy下hostname无法解析的问题已经如何扩大根分区
+abbrlink: 45181
 date: 2021-02-18 14:51:35
 tags:
 ---

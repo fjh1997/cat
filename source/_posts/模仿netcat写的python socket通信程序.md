@@ -1,5 +1,6 @@
 ---
 title: 模仿netcat写的python socket通信程序
+abbrlink: 5076
 date: 2020-08-24 19:12:02
 tags:
 ---

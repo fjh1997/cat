@@ -1,5 +1,6 @@
 ---
 title: 无需vsphere vcenter直接使用ovftool从ovf 模版tamplate部署 虚拟机
+abbrlink: 17418
 date: 2021-01-21 13:45:55
 tags:
 ---

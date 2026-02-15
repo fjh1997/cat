@@ -1,5 +1,6 @@
 ---
 title: 目标为_blank的存储型xss
+abbrlink: 17587
 date: 2021-01-19 14:32:31
 tags:
 ---

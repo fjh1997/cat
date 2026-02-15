@@ -1,5 +1,6 @@
 ---
 title: linux删除包含指定内容的文件
+abbrlink: 21212
 date: 2020-07-19 20:20:34
 tags:
 ---

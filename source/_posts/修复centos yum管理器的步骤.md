@@ -1,5 +1,6 @@
 ---
 title: 修复centos yum管理器的步骤
+abbrlink: 36504
 date: 2020-08-14 15:15:23
 tags:
 ---

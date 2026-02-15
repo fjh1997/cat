@@ -1,5 +1,6 @@
 ---
 title: breed固件逆向
+abbrlink: 20215
 date: 2021-10-18 21:57:58
 tags:
 ---

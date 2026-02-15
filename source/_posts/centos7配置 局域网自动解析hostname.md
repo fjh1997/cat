@@ -1,5 +1,6 @@
 ---
 title: centos7配置 局域网自动解析hostname
+abbrlink: 40930
 date: 2023-11-20 16:05:11
 tags:
 ---

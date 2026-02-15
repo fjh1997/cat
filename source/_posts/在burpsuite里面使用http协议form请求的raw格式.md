@@ -1,5 +1,6 @@
 ---
 title: 在burpsuite里面使用http协议form请求的raw格式
+abbrlink: 16553
 date: 2020-07-25 22:24:05
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 关于pip安装了module之后用python运行还是提示no module的解决办法
+abbrlink: 24980
 date: 2019-06-26 12:36:06
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: no schema for block at 1 index context acpi
+abbrlink: 32817
 date: 2021-02-20 17:03:40
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: WPF开启控制台输出
+abbrlink: 6115
 date: 2020-06-28 23:16:32
 tags:
 ---

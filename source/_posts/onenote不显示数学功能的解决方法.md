@@ -1,5 +1,6 @@
 ---
 title: onenote不显示数学功能的解决方法
+abbrlink: 29839
 date: 2022-02-03 00:12:39
 tags:
 ---

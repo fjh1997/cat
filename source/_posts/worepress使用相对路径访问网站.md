@@ -1,5 +1,6 @@
 ---
 title: worepress使用相对路径访问网站
+abbrlink: 40202
 date: 2020-07-21 17:09:24
 tags:
 ---

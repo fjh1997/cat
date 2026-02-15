@@ -1,5 +1,6 @@
 ---
 title: ssh通过代理连接服务器
+abbrlink: 5028
 date: 2021-07-25 17:41:24
 tags:
 ---

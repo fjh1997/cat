@@ -1,5 +1,6 @@
 ---
 title: Macos查看之前终端输入过的命令
+abbrlink: 28987
 date: 2020-03-28 21:24:11
 tags:
 ---

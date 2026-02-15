@@ -1,5 +1,6 @@
 ---
 title: ctf自动拼图
+abbrlink: 28947
 date: 2020-07-25 21:54:49
 tags:
 ---

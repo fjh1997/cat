@@ -1,5 +1,6 @@
 ---
 title: 在hyper-v里面的windowsxp启用复制粘贴以及上网功能
+abbrlink: 47552
 date: 2019-11-28 15:03:31
 tags:
 ---

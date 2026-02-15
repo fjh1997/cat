@@ -1,5 +1,6 @@
 ---
 title: puppeteer安装“Chromium”已损坏，无法打开。 您应该将它移到废纸篓。
+abbrlink: 9457
 date: 2022-03-21 10:52:16
 tags:
 ---

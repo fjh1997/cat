@@ -1,5 +1,6 @@
 ---
 title: element UI官网页头固定取消滚动条的实现方法
+abbrlink: 4359
 date: 2021-07-21 19:34:07
 tags:
 ---

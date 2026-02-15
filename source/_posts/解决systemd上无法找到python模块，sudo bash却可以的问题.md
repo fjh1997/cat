@@ -1,5 +1,6 @@
 ---
 title: 解决systemd上无法找到python模块，sudo bash却可以的问题
+abbrlink: 51264
 date: 2020-08-11 12:07:00
 tags:
 ---

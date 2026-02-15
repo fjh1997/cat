@@ -1,5 +1,6 @@
 ---
 title: 好消息！Vmware已经可以和Hyper-V兼容共存啦！
+abbrlink: 52844
 date: 2020-05-06 23:55:30
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: 将windows作为网关
+abbrlink: 6583
 date: 2024-04-20 13:07:26
 tags:
 ---
