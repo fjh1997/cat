@@ -1,5 +1,6 @@
 ---
 title: 解决nginx提示无法同时使用正则表达式和proxy_pass的问题
+abbrlink: 10543
 date: 2019-08-07 15:33:41
 tags:
 ---

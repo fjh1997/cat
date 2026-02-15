@@ -1,5 +1,6 @@
 ---
 title: 解决diskgenius some free clusters are marked as used in $bitmap
+abbrlink: 61485
 date: 2020-03-23 17:27:09
 tags:
 ---

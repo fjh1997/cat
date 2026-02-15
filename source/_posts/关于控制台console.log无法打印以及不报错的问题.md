@@ -1,5 +1,6 @@
 ---
 title: 关于控制台console.log无法打印以及不报错的问题
+abbrlink: 4171
 date: 2021-05-25 23:02:37
 tags:
 ---

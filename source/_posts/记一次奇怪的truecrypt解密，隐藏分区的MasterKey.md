@@ -1,5 +1,6 @@
 ---
 title: 记一次奇怪的truecrypt解密，隐藏分区的MasterKey
+abbrlink: 3001
 date: 2020-05-06 13:35:21
 tags:
 ---

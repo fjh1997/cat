@@ -1,5 +1,6 @@
 ---
 title: windows操作下汇编语言学习
+abbrlink: 13930
 date: 2023-12-18 16:02:59
 tags:
 ---

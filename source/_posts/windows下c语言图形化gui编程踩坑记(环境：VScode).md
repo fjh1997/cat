@@ -1,5 +1,6 @@
 ---
 title: windows下c语言图形化gui编程踩坑记(环境：VScode)
+abbrlink: 16770
 date: 2020-05-18 11:10:54
 tags:
 ---

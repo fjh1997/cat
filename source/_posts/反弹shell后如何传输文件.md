@@ -1,5 +1,6 @@
 ---
 title: 反弹shell后如何传输文件
+abbrlink: 54530
 date: 2024-01-06 14:32:15
 tags:
 ---

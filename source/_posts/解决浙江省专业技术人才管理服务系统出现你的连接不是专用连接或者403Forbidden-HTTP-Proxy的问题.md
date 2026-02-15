@@ -1,5 +1,6 @@
 ---
 title: 解决浙江省专业技术人才管理服务系统出现你的连接不是专用连接或者403Forbidden HTTP Proxy的问题
+abbrlink: 27888
 date: 2026-01-23 21:13:19
 tags:
 ---

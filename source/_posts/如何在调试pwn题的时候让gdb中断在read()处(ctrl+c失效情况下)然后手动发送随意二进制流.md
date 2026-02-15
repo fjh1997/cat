@@ -1,5 +1,6 @@
 ---
 title: 如何在调试pwn题的时候让gdb中断在read()处(ctrl+c失效情况下)然后手动发送随意二进制流
+abbrlink: 42321
 date: 2021-02-13 20:32:47
 tags:
 ---

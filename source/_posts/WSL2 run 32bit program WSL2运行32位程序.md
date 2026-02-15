@@ -1,5 +1,6 @@
 ---
 title: WSL2 run 32bit program WSL2运行32位程序
+abbrlink: 27917
 date: 2020-09-21 21:52:42
 tags:
 ---

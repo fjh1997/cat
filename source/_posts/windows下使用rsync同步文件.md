@@ -1,5 +1,6 @@
 ---
 title: windows下使用rsync同步文件
+abbrlink: 18316
 date: 2023-03-19 15:56:21
 tags:
 ---

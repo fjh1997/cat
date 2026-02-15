@@ -1,5 +1,6 @@
 ---
 title: github头像生成器
+abbrlink: 12772
 date: 2021-04-01 21:57:35
 tags:
 ---

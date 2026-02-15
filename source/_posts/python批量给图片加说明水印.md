@@ -1,5 +1,6 @@
 ---
 title: python批量给图片加说明水印
+abbrlink: 52179
 date: 2020-05-06 19:33:59
 tags:
 ---

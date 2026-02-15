@@ -1,5 +1,6 @@
 ---
 title: 最新git clone 克隆部分文件的方法
+abbrlink: 50867
 date: 2020-11-24 14:31:14
 tags:
 ---

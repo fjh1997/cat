@@ -1,5 +1,8 @@
 ---
-title: aws终止实例错may not be terminated. Modify its ‘disableApiTermination‘ instance attribute and try again.
+title: >-
+  aws终止实例错may not be terminated. Modify its ‘disableApiTermination‘ instance
+  attribute and try again.
+abbrlink: 44042
 date: 2021-04-08 19:58:47
 tags:
 ---

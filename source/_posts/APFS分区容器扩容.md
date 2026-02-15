@@ -1,5 +1,6 @@
 ---
 title: APFS分区容器扩容
+abbrlink: 31689
 date: 2021-04-30 08:12:28
 tags:
 ---

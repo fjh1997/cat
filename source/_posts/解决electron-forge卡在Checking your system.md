@@ -1,5 +1,6 @@
 ---
 title: 解决electron-forge卡在Checking your system
+abbrlink: 25168
 date: 2021-03-13 21:32:00
 tags:
 ---

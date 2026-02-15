@@ -1,5 +1,6 @@
 ---
 title: python数字与字节互相转换number to bytes，bytes to number
+abbrlink: 28369
 date: 2020-04-16 10:46:22
 tags:
 ---

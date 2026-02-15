@@ -1,5 +1,6 @@
 ---
 title: winhex挂载vmdk的方法
+abbrlink: 43101
 date: 2020-08-28 15:05:31
 tags:
 ---

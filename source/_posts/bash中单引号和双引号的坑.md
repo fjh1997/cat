@@ -1,5 +1,6 @@
 ---
 title: bash中单引号和双引号的坑
+abbrlink: 38029
 date: 2021-01-31 19:12:06
 tags:
 ---

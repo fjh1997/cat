@@ -1,5 +1,6 @@
 ---
 title: pwntool卸载gdb安装pwndbg
+abbrlink: 30959
 date: 2019-08-26 13:39:31
 tags:
 ---

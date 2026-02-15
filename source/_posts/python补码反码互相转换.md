@@ -1,5 +1,6 @@
 ---
 title: python补码反码互相转换
+abbrlink: 9524
 date: 2020-05-03 20:08:32
 tags:
 ---

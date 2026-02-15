@@ -1,5 +1,6 @@
 ---
 title: 暂时解决adb.exe push和pull时候有中文截断的问题 illegal byte sequence
+abbrlink: 63433
 date: 2023-03-21 19:06:40
 tags:
 ---

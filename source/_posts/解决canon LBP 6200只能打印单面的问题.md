@@ -1,5 +1,6 @@
 ---
 title: 解决canon LBP 6200只能打印单面的问题
+abbrlink: 48759
 date: 2020-03-19 10:34:11
 tags:
 ---

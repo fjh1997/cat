@@ -1,5 +1,6 @@
 ---
 title: windows的bat脚本连接字符串并保存到一个临时变量中
+abbrlink: 9747
 date: 2019-12-23 09:01:30
 tags:
 ---

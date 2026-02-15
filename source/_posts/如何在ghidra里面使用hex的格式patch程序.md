@@ -1,5 +1,6 @@
 ---
 title: 如何在ghidra里面使用hex的格式patch程序
+abbrlink: 11104
 date: 2021-02-26 17:59:32
 tags:
 ---

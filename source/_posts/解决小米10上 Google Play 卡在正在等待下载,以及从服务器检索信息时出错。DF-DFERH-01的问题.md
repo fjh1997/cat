@@ -1,5 +1,6 @@
 ---
-title: 解决小米10上 Google Play 卡在正在等待下载,以及从服务器检索信息时出错。DF-DFERH-01的问题
+title: '解决小米10上 Google Play 卡在正在等待下载,以及从服务器检索信息时出错。DF-DFERH-01的问题'
+abbrlink: 14881
 date: 2020-05-24 22:19:21
 tags:
 ---

@@ -1,5 +1,6 @@
 ---
 title: jsfuck、jjencode、aaencode解码方法
+abbrlink: 35006
 date: 2020-04-05 11:01:55
 tags:
 ---

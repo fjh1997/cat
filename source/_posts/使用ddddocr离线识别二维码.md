@@ -1,5 +1,6 @@
 ---
 title: 使用ddddocr离线识别二维码
+abbrlink: 8398
 date: 2023-11-06 12:47:00
 tags:
 ---

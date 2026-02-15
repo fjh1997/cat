@@ -1,5 +1,6 @@
 ---
 title: 解决银河麒麟os上steam++无法启动加速的问题
+abbrlink: 37662
 date: 2024-11-12 19:38:07
 tags:
 ---
@@ -9,5 +10,5 @@ tags:
 setstatus softmode -p
 ```
 安全中心里面也尽可能关闭。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/aef0f49448794135a764ccaae856d235.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/aef0f49448794135a764ccaae856d235.png)
 如果用自带的奇安信浏览器github提示证书错误，还需要去浏览器设置里面添加信任证书。

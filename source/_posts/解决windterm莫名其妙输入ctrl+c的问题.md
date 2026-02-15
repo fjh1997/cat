@@ -1,5 +1,6 @@
 ---
 title: 解决windterm莫名其妙输入ctrl+c的问题
+abbrlink: 5199
 date: 2024-09-02 21:50:32
 tags:
 ---

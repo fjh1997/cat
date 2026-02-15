@@ -1,5 +1,6 @@
 ---
 title: 关于防火墙入站（inbound）出站（outbound）方式的解释
+abbrlink: 56949
 date: 2019-12-23 13:25:38
 tags:
 ---

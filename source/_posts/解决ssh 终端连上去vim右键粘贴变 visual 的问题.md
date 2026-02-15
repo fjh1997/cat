@@ -1,5 +1,6 @@
 ---
 title: 解决ssh 终端连上去vim右键粘贴变 visual 的问题
+abbrlink: 59045
 date: 2021-01-23 12:19:47
 tags:
 ---

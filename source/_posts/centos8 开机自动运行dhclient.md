@@ -1,5 +1,6 @@
 ---
 title: centos8 开机自动运行dhclient
+abbrlink: 51118
 date: 2021-09-04 19:24:55
 tags:
 ---

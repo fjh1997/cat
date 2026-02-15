@@ -1,5 +1,6 @@
 ---
 title: 离线视频ocr识别
+abbrlink: 18924
 date: 2023-11-10 16:27:25
 tags:
 ---

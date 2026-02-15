@@ -1,5 +1,6 @@
 ---
 title: openssl一键生成密钥与证书
+abbrlink: 24755
 date: 2020-12-03 21:53:15
 tags:
 ---

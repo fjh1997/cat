@@ -1,5 +1,6 @@
 ---
 title: 使用openvpn作为网关上网故障排除
+abbrlink: 34191
 date: 2021-09-12 17:23:01
 tags:
 ---

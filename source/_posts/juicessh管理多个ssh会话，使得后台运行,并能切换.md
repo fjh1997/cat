@@ -1,5 +1,6 @@
 ---
-title: juicessh管理多个ssh会话，使得后台运行,并能切换
+title: 'juicessh管理多个ssh会话，使得后台运行,并能切换'
+abbrlink: 5961
 date: 2020-05-27 21:06:17
 tags:
 ---

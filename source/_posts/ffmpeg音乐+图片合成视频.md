@@ -1,5 +1,6 @@
 ---
 title: ffmpeg音乐+图片合成视频
+abbrlink: 38973
 date: 2021-02-07 22:10:30
 tags:
 ---

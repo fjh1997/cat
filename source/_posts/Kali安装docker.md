@@ -1,5 +1,6 @@
 ---
 title: Kali安装docker
+abbrlink: 21600
 date: 2019-05-28 17:31:07
 tags:
 ---

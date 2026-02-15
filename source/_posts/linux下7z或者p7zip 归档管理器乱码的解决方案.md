@@ -1,5 +1,6 @@
 ---
 title: linux下7z或者p7zip 归档管理器乱码的解决方案
+abbrlink: 4747
 date: 2021-11-10 17:27:32
 tags:
 ---

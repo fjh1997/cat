@@ -1,5 +1,6 @@
 ---
 title: openvas-setup使用代理proxy加速
+abbrlink: 58094
 date: 2019-07-05 22:21:40
 tags:
 ---

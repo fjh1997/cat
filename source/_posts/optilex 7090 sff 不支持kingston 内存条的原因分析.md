@@ -1,5 +1,6 @@
 ---
 title: optilex 7090 sff 不支持kingston 内存条的原因分析
+abbrlink: 24332
 date: 2021-11-24 14:21:09
 tags:
 ---

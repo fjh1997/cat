@@ -1,5 +1,6 @@
 ---
 title: 解决debian左上角闪烁无画面的方法之一 fatal server error (ee) no screens found(ee)
+abbrlink: 12459
 date: 2021-11-15 19:33:04
 tags:
 ---

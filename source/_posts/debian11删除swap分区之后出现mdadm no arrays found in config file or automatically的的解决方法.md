@@ -1,5 +1,8 @@
 ---
-title: debian11删除swap分区之后出现mdadm no arrays found in config file or automatically的的解决方法
+title: >-
+  debian11删除swap分区之后出现mdadm no arrays found in config file or
+  automatically的的解决方法
+abbrlink: 4998
 date: 2021-12-07 13:51:40
 tags:
 ---

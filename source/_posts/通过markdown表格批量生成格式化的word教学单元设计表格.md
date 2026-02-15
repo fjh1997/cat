@@ -1,5 +1,6 @@
 ---
 title: 通过markdown表格批量生成格式化的word教学单元设计表格
+abbrlink: 64061
 date: 2024-09-20 00:21:02
 tags:
 ---

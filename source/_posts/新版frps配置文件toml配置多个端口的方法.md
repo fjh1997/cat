@@ -1,5 +1,6 @@
 ---
 title: 新版frps配置文件toml配置多个端口的方法
+abbrlink: 62761
 date: 2025-05-06 14:00:54
 tags:
 ---

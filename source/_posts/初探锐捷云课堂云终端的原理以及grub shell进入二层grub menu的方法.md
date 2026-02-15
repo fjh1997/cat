@@ -1,5 +1,6 @@
 ---
 title: 初探锐捷云课堂云终端的原理以及grub shell进入二层grub menu的方法
+abbrlink: 46305
 date: 2024-04-16 09:23:30
 tags:
 ---

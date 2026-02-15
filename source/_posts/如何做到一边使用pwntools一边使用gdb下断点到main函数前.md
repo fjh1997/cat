@@ -1,5 +1,6 @@
 ---
 title: 如何做到一边使用pwntools一边使用gdb下断点到main函数前
+abbrlink: 27611
 date: 2020-04-10 15:44:55
 tags:
 ---
