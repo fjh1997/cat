@@ -49,3 +49,5 @@ EAPOL pairs (best).......................: 3
 .\hashcat.exe -m 22000 -a 0 .\keyfile .\probable-v2-wpa-top4800.txt
 ```
 总的来说这个工具比aircrack-ng好用。赞一个。除此之外，你也可以尝试使用命令`wifi.deauth all`或者`wifi.assoc all`来批量发送deauth攻击和pmkid攻击，锁定信道效果更佳，需要注意的是可能有假阳性存在，可以看[我这个pr](https://github.com/bettercap/bettercap/pull/1249)
+
+顺带一提我在mac上跑Fedora 43，运行aireplay-ng的时候提示Couldn't determine current channel for wlan0mon, you should either force the operation with --ignore-negative-one or apply a kernel patch.，这就是WEXT兼容性的问题，需要[我这个补丁](https://github.com/aircrack-ng/aircrack-ng/pull/2702)来解决。
