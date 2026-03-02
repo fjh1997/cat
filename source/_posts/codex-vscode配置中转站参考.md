@@ -1,5 +1,5 @@
 ---
-title: windows上codex插件+vscode配置中转站参考
+title: windows上codex插件+vscode配置中转站API参考以及中文乱码解决方案
 date: 2026-03-02 16:54:20
 tags:
 ---
