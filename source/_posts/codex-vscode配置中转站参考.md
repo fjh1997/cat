@@ -15,6 +15,8 @@ name = "fox"
 base_url = "http://192.168.1.5:8317/v1"
 wire_api = "responses"
 requires_openai_auth = true
+[features]
+powershell_utf8 = false
 
 [mcp_servers.ida-pro-mcp]
 command = "C:\\Users\\54930\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
@@ -43,7 +45,14 @@ enabled = true
 }
 ```
 注意如果有中文路径可能会导致stdio方式我i收的mcp握手失败`MCP startup failed: handshaking ... connection closed: initialize response`
-需要加上`env = { PYTHONUTF8 = "1" }`参数，不然会导致编码问题。测试脚本如下：
+需要加上`env = { PYTHONUTF8 = "1" }`参数，不然会导致中文编码乱码问题。
+```
+[features]
+powershell_utf8 = false
+```
+这一行最好也加上不然容易乱码
+
+测试脚本如下：
 ```python
 import tomllib, pathlib, subprocess, time
 cfg = pathlib.Path(r'C:\Users\54930\.codex\config.toml')
