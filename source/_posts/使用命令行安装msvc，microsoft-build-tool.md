@@ -1,5 +1,5 @@
 ---
-title: 使用命令行安装msvc，microsoft build tool
+title: 使用命令行安装 Microsoft C++ (MSVC) Build Tools
 date: 2026-03-02 19:50:51
 tags:
 ---
