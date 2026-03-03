@@ -11,6 +11,9 @@ model = "gpt-5.3-codex"
 model_reasoning_effort = "high"
 features.powershell_utf8 = true
 approval_policy = "never"
+sandbox_mode = "danger-full-access"
+[windows]
+sandbox = "elevated"
 
 [model_providers.fox]
 name = "fox"
@@ -49,6 +52,13 @@ enabled = true
 注意如果有中文路径可能会导致stdio方式我i收的mcp握手失败`MCP startup failed: handshaking ... connection closed: initialize response`
 需要加上`env = { PYTHONUTF8 = "1" }`参数，不然会导致中文编码乱码问题。   
 加了approval_policy = "never"之后可以避免烦人的同意按钮。  
+```
+sandbox_mode = "danger-full-access"  
+[windows]
+sandbox = "elevated"
+```
+
+加上可以让codex用管理员身份启动
 ```
 [features]
 powershell_utf8 = false
