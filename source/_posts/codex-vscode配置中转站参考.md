@@ -1,5 +1,5 @@
 ---
-title: windows上codex插件+vscode配置中转站API参考以及中文乱码解决方案
+title: windows上codex插件+vscode配置中转站API参考以及中文乱码解决方案还有自动同意策略
 date: 2026-03-02 16:54:20
 tags:
 ---
@@ -10,6 +10,8 @@ model_provider = "fox"
 model = "gpt-5.3-codex"
 model_reasoning_effort = "high"
 features.powershell_utf8 = true
+approval_policy = "never"
+
 [model_providers.fox]
 name = "fox"
 base_url = "http://192.168.1.5:8317/v1"
@@ -45,7 +47,8 @@ enabled = true
 }
 ```
 注意如果有中文路径可能会导致stdio方式我i收的mcp握手失败`MCP startup failed: handshaking ... connection closed: initialize response`
-需要加上`env = { PYTHONUTF8 = "1" }`参数，不然会导致中文编码乱码问题。
+需要加上`env = { PYTHONUTF8 = "1" }`参数，不然会导致中文编码乱码问题。   
+加了approval_policy = "never"之后可以避免烦人的同意按钮。  
 ```
 [features]
 powershell_utf8 = false
