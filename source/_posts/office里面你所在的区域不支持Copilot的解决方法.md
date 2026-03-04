@@ -14,3 +14,4 @@ tags:
 ```
 之后保持美国全局tun重启word即可：  
 ![20260210000843](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/20260210000843.png)
+如果还是不行，可以尝试office 365的网页版，也能用Copilot
