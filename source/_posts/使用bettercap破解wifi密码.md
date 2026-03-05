@@ -3,11 +3,11 @@ title: 使用bettercap破解wifi密码
 date: 2026-02-24 19:03:33
 tags:
 ---
-最近过年回爷爷家，发现爷爷家有一个特殊的USB无线网卡Tenda U6和COMFAST CF-952AX v2，淘宝上都很便宜。  
+最近过年回爷爷家，发现爷爷家有一个特殊的USB无线网卡Tenda U6和COMFAST CF-952AX v2，淘宝上都很便宜，还有一个奋威 Fenvi FU-AX1800  是MT7921  
 想起了以前上学时候使用这种USB无线网卡破wifi的经历，就尝试了一下：  
-破解wifi的网卡最重要的是驱动是否支持，可以去[这里](https://github.com/morrownr/USB-WiFi/blob/main/home/Recommended_Adapters_for_Kali_Linux.md)查询
+破解wifi的网卡最重要的是驱动是否支持，可以去[这里](https://github.com/morrownr/USB-WiFi/blob/main/home/Recommended_Adapters_for_Kali_Linux.md)查询  
 如果支持了，可以使用Bettercap进行破解，需要注意这几个问题：  
-1.操作系统内核版本，如果是COMFAST CF-952AX v2用的是RTL8852BU需要满足linux内核在4.17以上  
+1.操作系统内核版本，如果是COMFAST CF-952AX v2用的是RTL8852BU需要满足linux内核在6.17以上.奋威AX1800则需要满足内核6.12（含6.12）以下，6.13开始会有[bug](https://github.com/morrownr/USB-WiFi/issues/687)抓不到管理帧Beacon  
 2.操作系统是否开启了WEXT支持，可以用`grep -i wext /boot/config-$(uname -r) `查看，如果提示 `CONFIG_CFG80211_WEXT is not set`则iwlist用不了，需要使用[patch过的版本](https://github.com/bettercap/bettercap/pull/1248)来使用NL80211协议的iw（我和作者battle不过QAQ）  
 解决以上问题之后，在虚拟机里面透传usb无线网卡，我是mac用的vmware Fusion。并使用源码编译的方式安装Bettercap：  
 ```bash
@@ -51,3 +51,5 @@ EAPOL pairs (best).......................: 3
 总的来说这个工具比aircrack-ng好用。赞一个。除此之外，你也可以尝试使用命令`wifi.deauth all`或者`wifi.assoc all`来批量发送deauth攻击和pmkid攻击，锁定信道效果更佳，需要注意的是可能有假阳性存在，可以看[我这个pr](https://github.com/bettercap/bettercap/pull/1249)
 
 顺带一提我在mac上跑Fedora 43，运行aireplay-ng的时候提示Couldn't determine current channel for wlan0mon, you should either force the operation with --ignore-negative-one or apply a kernel patch.，这就是WEXT兼容性的问题，需要[我这个补丁](https://github.com/aircrack-ng/aircrack-ng/pull/2702)来解决。
+
+
