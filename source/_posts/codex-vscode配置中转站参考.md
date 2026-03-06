@@ -51,6 +51,12 @@ enabled = true
 ```
 注意如果有中文路径可能会导致stdio方式我i收的mcp握手失败`MCP startup failed: handshaking ... connection closed: initialize response`
 需要加上`env = { PYTHONUTF8 = "1" }`参数，不然会导致中文编码乱码问题。   
+还需要在提示词里面加上，每次使用powershell之前要$PSDefaultParameterValues['Get-Content:Encoding'] = 'UTF8'，不然Get-Content也可能会乱码。
+也可以在powershell的profile里面配置：
+```
+code $PROFILE
+$PSDefaultParameterValues['Get-Content:Encoding'] = 'utf8'
+ ```
 加了approval_policy = "never"之后可以避免烦人的同意按钮。  
 ```
 sandbox_mode = "danger-full-access"  
