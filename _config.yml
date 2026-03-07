@@ -124,4 +124,5 @@ feed:
 skip_render:
   - "baidu_verify_codeva-8w4x8eboZp.html"
   - "robots.txt"
+  - "llms.txt"
 
