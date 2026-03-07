@@ -1,8 +1,9 @@
 ---
 title: 使用claude code分析bochk 中银香港app防护机制
+mermaid: true
+abbrlink: 6786
 date: 2026-03-02 19:04:14
 tags:
-mermaid: true
 ---
 # 分析方法：
 

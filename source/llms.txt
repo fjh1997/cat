@@ -6,9 +6,9 @@
 
 - 作者: catcatyu
 - 语言: 中文
-- 站点地址: https://blog.fjh1997.top
-- RSS 订阅: https://blog.fjh1997.top/atom.xml
-- 站点地图: https://blog.fjh1997.top/sitemap.xml
+- 站点地址: https://csdn.fjh1997.top
+- RSS 订阅: https://csdn.fjh1997.top/atom.xml
+- 站点地图: https://csdn.fjh1997.top/sitemap.xml
 
 ## 主要内容方向
 
@@ -23,7 +23,7 @@
 
 ## 重要页面
 
-- [首页](https://blog.fjh1997.top/)
-- [文章归档](https://blog.fjh1997.top/archives/)
-- [关于](https://blog.fjh1997.top/about/)
-- [友链](https://blog.fjh1997.top/friend/)
+- [首页](https://csdn.fjh1997.top/)
+- [文章归档](https://csdn.fjh1997.top/archives/)
+- [关于](https://csdn.fjh1997.top/about/)
+- [友链](https://csdn.fjh1997.top/friend/)

@@ -1,8 +1,9 @@
 ---
 title: kernelsu next临时卸载功能开发记录
+mermaid: true
+abbrlink: 18939
 date: 2026-03-02 19:14:18
 tags:
-mermaid: true
 ---
 
 

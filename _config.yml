@@ -21,7 +21,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://blog.fjh1997.top
+url: https://csdn.fjh1997.top
 permalink: posts/:abbrlink.html
 permalink_defaults:
 pretty_urls:
@@ -113,10 +113,10 @@ feed:
   enable: true
   type: atom
   path: atom.xml
-  limit: 20
+  limit: 50
   hub:
-  content:
-  content_limit: 140
+  content: true
+  content_limit:
   content_limit_delim: ' '
   order_by: -date
   icon: icon.png
@@ -125,4 +125,17 @@ skip_render:
   - "baidu_verify_codeva-8w4x8eboZp.html"
   - "robots.txt"
   - "llms.txt"
+
+# Nofollow - 为外部链接添加 nofollow 属性
+nofollow:
+  enable: true
+  field: site
+  exclude:
+    - 'csdn.fjh1997.top'
+    - 'github.com/fjh1997'
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  rel: true
 

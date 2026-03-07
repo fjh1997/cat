@@ -1,5 +1,6 @@
 ---
 title: windows下git中文乱码的解决方案
+abbrlink: 22358
 date: 2026-03-02 18:04:59
 tags:
 ---

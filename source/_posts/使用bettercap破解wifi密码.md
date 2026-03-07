@@ -1,5 +1,6 @@
 ---
 title: 使用bettercap破解wifi密码
+abbrlink: 59406
 date: 2026-02-24 19:03:33
 tags:
 ---

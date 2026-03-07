@@ -1,5 +1,6 @@
 ---
 title: 使用caddy签发ip证书
+abbrlink: 52007
 date: 2026-02-18 11:56:45
 tags:
 ---

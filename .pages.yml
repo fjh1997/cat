@@ -1,0 +1,78 @@
+media: source/images
+
+content:
+  - name: posts
+    label: 文章
+    path: source/_posts
+    type: collection
+    view:
+      fields: [title, date, tags]
+      sort: date
+      default:
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: YYYY-MM-DD HH:mm:ss
+      - name: abbrlink
+        label: 永久链接ID
+        type: number
+        description: 由 hexo-abbrlink 自动生成，通常无需手动修改
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: categories
+        label: 分类
+        type: string
+        list: true
+      - name: description
+        label: 摘要描述
+        type: text
+        description: 用于 SEO meta description，留空则自动从正文提取
+      - name: cover
+        label: 封面图
+        type: image
+      - name: body
+        label: 正文
+        type: rich-text
+
+  - name: about
+    label: 关于页面
+    path: source/about/index.md
+    type: file
+    fields:
+      - name: title
+        label: 标题
+        type: string
+      - name: date
+        label: 日期
+        type: date
+      - name: comments
+        label: 开启评论
+        type: boolean
+      - name: body
+        label: 正文
+        type: rich-text
+
+  - name: friend
+    label: 友链页面
+    path: source/friend/index.md
+    type: file
+    fields:
+      - name: title
+        label: 标题
+        type: string
+      - name: comments
+        label: 开启评论
+        type: boolean
+      - name: body
+        label: 正文
+        type: rich-text
