@@ -5,15 +5,23 @@
 # Site
 title: 猫猫鱼的小窝
 subtitle: 'catcatyu home page'
-description: '欢迎'
+description: '猫猫鱼的技术博客，分享 Linux、安全、Docker、网络、逆向工程等技术文章'
 keywords:
+  - Linux
+  - 安全
+  - Docker
+  - 网络
+  - 逆向工程
+  - CTF
+  - Python
+  - 技术博客
 author: catcatyu
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://csdn.fjh1997.top
+url: https://blog.fjh1997.top
 permalink: posts/:abbrlink.html
 permalink_defaults:
 pretty_urls:
@@ -79,7 +87,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: 'date'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -115,4 +123,5 @@ feed:
   autodiscovery: true
 skip_render:
   - "baidu_verify_codeva-8w4x8eboZp.html"
+  - "robots.txt"
 
