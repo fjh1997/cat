@@ -20,7 +20,7 @@ content:
         type: date
         required: true
         options:
-          format: YYYY-MM-DD HH:mm:ss
+          format: yyyy-MM-dd HH:mm:ss
       - name: abbrlink
         label: 永久链接ID
         type: number
