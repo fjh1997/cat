@@ -596,7 +596,7 @@ injector:
   head_begin: # Inject code snippet right after <head>
   head_end: # Inject code snippet right before </head>
   body_begin: # Inject code snippet right after <body>
-  body_end: # Inject code snippet right before </body>
+  body_end: '<a href="https://app.pagescms.org/fjh1997/CSDN/main" target="_blank" rel="noopener" style="position:fixed;bottom:60px;left:16px;z-index:999;width:36px;height:36px;border-radius:50%;background:var(--red-2,#009bff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.15);opacity:.5;transition:opacity .2s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.5" title="管理后台">&#9998;</a>'
   sidebar_begin: # Inject code snippet right after <aside>
   sidebar_end: # Inject code snippet right before </aside>
 
