@@ -98,31 +98,31 @@ curl -fsSL https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp.sh -o instal
 
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-8.png)
 
-以后设备重启后需要输入`bash /mnt/workspace/sakura_frp/start.sh`启动穿透。
-之后点击服务-隧道列表：
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-9.png)
-随便选一个，可以选浙江移动
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-10.png)
-隧道类型选tcp
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-11.png)
-选22端口：
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-12.png)
-创建成功之后去远程管理页面：
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-15.png)
-如果没显示出来多按几下刷新，或者重启服务
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-16.png)
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-17.png)
+以后设备重启后需要输入`bash /mnt/workspace/sakura_frp/start.sh`启动穿透。  
+之后点击服务-隧道列表：  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-9.png)  
+随便选一个，可以选浙江移动  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-10.png)  
+隧道类型选tcp  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-11.png)  
+选22端口：  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-12.png)  
+创建成功之后去远程管理页面：  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-15.png)  
+如果没显示出来多按几下刷新，或者重启服务  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-16.png)  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-17.png)  
 
-输入连接密码并连接：
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-18.png)
-把创建好的隧道拖到加号上
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-19.png)
-成功后会显示连接信息：
+输入连接密码并连接： 
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-18.png)  
+把创建好的隧道拖到加号上  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-19.png)  
+成功后会显示连接信息： 
 
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-20.png)
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-20.png)  
 之后使用windterm进行连接，使用用户名root和密码即可：
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-22.png)
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-23.png)
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-22.png)  
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-23.png)  
 之后上传你需要审计的代码包，如unserialize.zip,拖到左下角小框里：
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-24.png)
 之后你和openclaw说话他就会自动帮你审计：
