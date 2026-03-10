@@ -126,7 +126,7 @@ date: 2026-03-09 00:00:00
 输入：
 
 ```
-wget https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp.sh && bash sakura_frp.sh
+wget https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp_new.sh && bash sakura_frp.sh
 ```
 
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-4.png)
