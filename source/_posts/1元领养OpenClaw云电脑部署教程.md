@@ -93,7 +93,7 @@ date: 2026-03-09 00:00:00
 
 会提示你启用2fa，如果你想启用，可以下一个微软的authencitator绑定，如不需要可以跳过
 
-![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/QQ_1773128282430.png)
+![](/source/images/QQ_1773133104523.png)
 
 ![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/auth.jpg)
 
