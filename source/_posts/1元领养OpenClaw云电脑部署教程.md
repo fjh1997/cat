@@ -79,37 +79,37 @@ date: 2026-03-09 00:00:00
 
 先去[ngrok - Online in One Line注册账户，使用github进行登录](https://dashboard.ngrok.com/signup)
 
-![](/source/images/QQ_1773127611000.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/QQ_1773127611000.png)
 
 如果没有github账号，可以注册一个
 
-![](/source/images/2.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/2.png)
 
-![](/source/images/3.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/3.png)
 
 注册好后用github账号登录grok
 
-![](/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-03-10%20153708.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-03-10%20153708.png)
 
 会提示你启用2fa，如果你想启用，可以下一个微软的authencitator绑定，如不需要可以跳过
 
-![](/source/images/QQ_1773128282430.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/QQ_1773128282430.png)
 
-![](/source/images/auth.jpg)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/auth.jpg)
 
 登录之后看到自己的token，把它复制下来
 
-![](/source/images/QQ_1773128320722.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/QQ_1773128320722.png)
 
 之后把token粘贴进剪切板，并让小龙虾帮你配置内网穿透
 
-![](/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-03-10%20154533.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-03-10%20154533.png)
 
-![](/source/images/QQ_1773128939192.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/QQ_1773128939192.png)
 
 之后使用windterm进行连接
 
-![](/source/images/999.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/999.png)
 
 ## （选项二）8. 使用 Sakura Frp 进行穿透
 
