@@ -199,12 +199,12 @@ wget https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp.sh && bash sakura_
 ![2026-03-12-16-22-09](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-16-22-09.png)
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-22.png)
 
-9.上传代码包让小龙虾自动审计  
+## 10.上传代码包让小龙虾自动审计  
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-23.png)  
 之后上传你需要审计的代码包，如unserialize.zip,拖到左下角小框里： ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-24.png)
 
 之后你和openclaw说话他就会自动帮你审计： ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-25.png)
-10.接入飞书
+## 11.接入飞书
 先和openclaw说:
 ```
 帮我安装飞书插件npx -y @larksuite/openclaw-lark-tools install
