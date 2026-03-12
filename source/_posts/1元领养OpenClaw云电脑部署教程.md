@@ -1,5 +1,5 @@
 ---
-title: 0元领养专属"小龙虾"OpenClaw，2核16GB配置/无痛部署/开箱即用并配置内网穿透
+title: 0元领养专属"小龙虾"OpenClaw，2核16GB配置/无痛部署/开箱即用并配置内网穿透接入飞书
 date: 2026-03-09 00:00:00
 ---
 参考来源：[https://linux.do/t/topic/1702573](https://linux.do/t/topic/1702573)
