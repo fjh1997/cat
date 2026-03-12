@@ -75,9 +75,35 @@ date: 2026-03-09 00:00:00
 
 接下来需要注册内网穿透服务
 
-## （选项一）8.使用ngrok进行穿透
+## 8.配置ssh服务
+
+![2026-03-12-15-21-21](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-15-21-21.png)
+
+
+在终端中输入以下命令开启ssh服务：
+```
+service ssh start
+```
+
+![2026-03-12-15-35-33](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-15-35-33.png)
+
+同样方法输入下列命令配置ssh自启动服务:
+```
+echo "service ssh start" >> /root/bz-startup/main.sh
+```
+
+## （选项一）9.使用ngrok进行穿透
+
+
 
 先去[ngrok - Online in One Line注册账户，使用github进行登录](https://dashboard.ngrok.com/signup)
+
+
+
+如果github上不去，可以使用watts tool进行加速：
+![2026-03-12-15-28-04](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-15-28-04.png)
+![2026-03-12-15-32-37](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-15-32-37.png)
+
 
 ![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/QQ_1773127611000.png)
 
@@ -93,7 +119,7 @@ date: 2026-03-09 00:00:00
 
 会提示你启用2fa，如果你想启用，可以下一个微软的authencitator绑定，如不需要可以跳过
 
-![](/source/images/QQ_1773133104523.png)
+![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/QQ_1773133104523.png)
 
 ![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/auth.jpg)
 
@@ -111,7 +137,7 @@ date: 2026-03-09 00:00:00
 
 ![](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/999.png)
 
-## （选项二）8. 使用 Sakura Frp 进行穿透
+## （选项二）9. 使用 Sakura Frp 进行穿透
 
 先去 sakurafrp 官网 [https://www.natfrp.com/user/](https://www.natfrp.com/user/) 注册用户：
 
@@ -121,21 +147,22 @@ date: 2026-03-09 00:00:00
 
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-14.png)
 
-认证成功之后，在云电脑中先在剪切板里面粘贴命令
+认证成功之后，在云电脑中先在剪切板里面粘贴命令，之后打开终端粘贴后后回车，
 
 输入：
 
 ```
-wget https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp_new.sh && bash sakura_frp.sh
+wget https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp.sh && bash sakura_frp.sh
 ```
 
-![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-4.png)
-
-打开终端 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-5.png)
+![2026-03-12-15-38-50](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-15-38-50.png)
+执行一段时间后会提示你输入密钥，先不动，如果卡住了，使用ctrl+c中断命令，然后按方向键上键重试即可：
+![2026-03-12-15-44-02](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-15-44-02.png)
 
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-6.png)
 
-之后复制访问密钥，在剪切板里面粘贴，之后再复制到终端里面： ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-3.png)![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-7.png)
+之后复制访问密钥，在剪切板里面粘贴，之后再复制到终端里面：![2026-03-12-15-47-47](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-15-47-47.png)
+
 
 复制完访问密钥之后，设置远程管理密码，可以看到安装成功的界面：
 
@@ -164,7 +191,13 @@ wget https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp_new.sh && bash sak
 成功后会显示连接信息：
 
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-20.png)  
-之后使用windterm进行连接，使用用户名root和密码即可： ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-22.png)
+也可以去日志里查看连接地址：
+![2026-03-12-16-19-41](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-16-19-41.png)
+之后使用windterm进行连接，使用用户名root和密码即可： 
+
+![2026-03-12-16-21-21](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-16-21-21.png)
+![2026-03-12-16-22-09](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-16-22-09.png)
+![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-22.png)
 
 9.上传代码包让小龙虾自动审计  
 ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-23.png)  
