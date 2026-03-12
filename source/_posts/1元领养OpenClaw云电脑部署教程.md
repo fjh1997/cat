@@ -204,3 +204,17 @@ wget https://cdn.jsdelivr.net/gh/fjh1997/CTF-@main/sakura_frp.sh && bash sakura_
 之后上传你需要审计的代码包，如unserialize.zip,拖到左下角小框里： ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-24.png)
 
 之后你和openclaw说话他就会自动帮你审计： ![alt text](https://cdn.jsdelivr.net/gh/fjh1997/CSDN@main/source/images/openclaw-image-25.png)
+10.接入飞书
+先和openclaw说:
+```
+帮我安装飞书插件npx -y @larksuite/openclaw-lark-tools install
+
+```
+![2026-03-12-18-15-45](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-18-15-45.png)
+等openclaw处理好之后在终端里面再次输入：
+```
+npx -y @larksuite/openclaw-lark-tools install
+```
+之后下载飞书app扫码：  
+![2026-03-12-18-11-06](https://cdn.jsdelivr.net/gh/fjh1997/CSDN/source/images/2026-03-12-18-11-06.png)
+即可连接机器人
