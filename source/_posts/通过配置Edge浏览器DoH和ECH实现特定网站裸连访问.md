@@ -77,9 +77,10 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v DnsOverHttpsTemplates /t REG_
 
 **关于 DoH 服务器的选择：**
 
-- Cloudflare 的 `https://cloudflare-dns.com/dns-query`（`1.1.1.1`）是最常见的支持 ECH 密钥分发的 DoH 服务器，但在国内网络可能不可直连
-- 阿里 DNS 的 `https://dns.alidns.com/dns-query` 在国内可用，但不一定支持返回 HTTPS 类型 DNS 记录,不推荐（ECH 所需）
-- 如果你有自建的 DoH 代理或中转服务器，使用你自己的 DoH 地址效果最好，如linux.do站长秦始皇的doh地址是：https://xxx.ddd.oaifree.com/query-dns 其中 xxx 可以随便换，换成你喜欢的。
+- Cloudflare 的 `https://cloudflare-dns.com/dns-query`（`1.1.1.1`）是最常见的支持 ECH 密钥分发的 DoH 服务器，但在国内网络可能不可直连。
+- **推荐：使用 Cloudflare Gateway (Zero Trust) 创建私人 DoH 节点**。只需要注册一个免费的 Cloudflare 账号，开通 Zero Trust，在 `Gateway -> DNS Locations` 中添加一个 Location，它就会自动为你生成一个私有专属的 DoH 地址（例如 `https://<一串随机字符>.cloudflare-gateway.com/dns-query`）。这种方式目前在国内直连的成功率非常高，而且完全支持 ECH。
+- 阿里 DNS 的 `https://dns.alidns.com/dns-query` 在国内虽然可用，但它不一定支持返回 HTTPS 类型 DNS 记录（ECH 所需），所以不推荐用作 ECH 方案。
+- 如果你有自建的 DoH 代理或中转服务器，使用你自己的 DoH 地址效果最好，如 linux.do 站长秦始皇提供的 DoH 地址是：`https://xxx.ddd.oaifree.com/query-dns`（其中 xxx 可以随便换成你喜欢的字符）。
 
 **验证配置：**
 
@@ -91,34 +92,20 @@ reg query "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v BuiltInDnsClientEnabled
 
 ### 第二步：启用 Edge 的 ECH 功能
 
-ECH 在 Edge 中是通过实验性 flags 控制的。需要先**完全关闭 Edge 浏览器**，然后修改 Edge 的 `Local State` 配置文件。
+ECH 同样可以通过注册表策略来启用。以**管理员权限**执行：
 
 ```powershell
-# 1. 先关闭所有 Edge 进程
-Stop-Process -Name "msedge" -Force -ErrorAction SilentlyContinue
-Start-Sleep -Seconds 3
-
-# 2. 修改 Local State 文件，添加 ECH flag
-$path = "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Local State"
-$json = Get-Content $path -Raw | ConvertFrom-Json
-
-if (-not $json.browser.PSObject.Properties['enabled_labs_experiments']) {
-    $json.browser | Add-Member -NotePropertyName 'enabled_labs_experiments' -NotePropertyValue @('encrypted-client-hello@1')
-} else {
-    $exps = [System.Collections.ArrayList]@($json.browser.enabled_labs_experiments)
-    if ($exps -notcontains 'encrypted-client-hello@1') {
-        $exps.Add('encrypted-client-hello@1') | Out-Null
-    }
-    $json.browser.enabled_labs_experiments = $exps.ToArray()
-}
-
-$json | ConvertTo-Json -Depth 100 -Compress | Set-Content $path -Encoding UTF8 -NoNewline
-Write-Host "ECH flag 已成功写入"
+# 启用 Encrypted Client Hello
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v EncryptedClientHelloEnabled /t REG_DWORD /d 1 /f
 ```
 
-> **⚠️ 重要**：必须在 Edge **完全关闭**的状态下执行此操作。如果 Edge 正在运行，它会在退出时覆盖 `Local State` 文件，导致修改丢失。
+验证：
 
-你也可以手动在 Edge 地址栏输入 `edge://flags/#encrypted-client-hello`，将 **Encrypted ClientHello** 设置为 **Enabled**。
+```powershell
+reg query "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v EncryptedClientHelloEnabled
+```
+
+> **💡 说明**：较早版本的 Edge 可以在 `edge://flags/#encrypted-client-hello` 中手动启用 ECH，但新版 Edge（146+）已移除该 flag，需要通过注册表策略 `EncryptedClientHelloEnabled` 来控制。
 
 ### 第三步：（可选）配置系统级 DNS 加密
 
@@ -168,16 +155,12 @@ Set-DnsClientDohServerAddress -ServerAddress "1.0.0.1" `
 ### 命令行测试
 
 ```powershell
-# 验证 Edge DoH 策略
+# 验证 Edge DoH 和 ECH 策略
 reg query "HKLM\SOFTWARE\Policies\Microsoft\Edge"
 
 # 验证系统 DNS 配置
 Get-DnsClientServerAddress -InterfaceIndex 13
 Get-DnsClientDohServerAddress -ServerAddress "1.1.1.1"
-
-# 验证 ECH flag
-$json = Get-Content "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Local State" -Raw | ConvertFrom-Json
-$json.browser.enabled_labs_experiments
 ```
 
 ## 排错指南
@@ -201,25 +184,17 @@ ECH 不通过最常见的原因：
 
 1. **DoH 服务器不支持返回 HTTPS 类型 DNS 记录**：ECH 密钥通过 DNS HTTPS 记录（TYPE65）分发，不是所有 DoH 服务器都会返回这种记录
 2. **目标网站不支持 ECH**：ECH 需要服务端也支持。目前主要是 Cloudflare 托管的网站支持 ECH
-3. **ECH flag 未生效**：确认在 Edge 完全关闭的状态下修改了 `Local State` 文件，或者手动在 `edge://flags` 中启用
-
-### 修改 Local State 不生效
-
-Edge 运行时会锁定并在关闭时覆盖 `Local State` 文件。**必须先完全关闭 Edge**（包括后台进程），再修改文件：
-
-```powershell
-# 确保 Edge 完全关闭
-Stop-Process -Name "msedge" -Force
-Start-Sleep -Seconds 3
-# 然后再执行修改脚本
-```
+3. **ECH 策略未启用**：确认注册表中 `EncryptedClientHelloEnabled` 值为 `1`
+   ```powershell
+   reg query "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v EncryptedClientHelloEnabled
+   ```
 
 ## 总结
 
 通过配置 DoH + ECH，可以实现对部分被 SNI 阻断的网站的裸连访问（无需代理）。核心配置只有三步：
 
 1. **Edge DoH 策略**：通过注册表设置 DoH 模式和 DoH 服务器地址
-2. **Edge ECH Flag**：修改 Local State 或在 `edge://flags` 启用 Encrypted Client Hello
+2. **Edge ECH 策略**：通过注册表设置 `EncryptedClientHelloEnabled` 启用 ECH
 3. **（可选）系统 DNS**：在 Windows 系统层面启用 DNS 加密
 
 需要注意的是，这种方案的效果取决于你的网络环境和 DoH 服务器的可达性。最关键的一环是**找到一个在你的网络下可正常使用且支持 HTTPS DNS 记录的 DoH 服务器**。
