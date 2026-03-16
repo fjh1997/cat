@@ -1,5 +1,5 @@
 ---
-title: 通过配置 Edge 浏览器 DoH 和 ECH 实现特定网站裸连访问
+title: 通过配置 Edge 浏览器 DoH 和 ECH 实现特定网站如linuxdo裸连访问
 abbrlink: 20260316
 date: 2026-03-16 12:00:00
 tags:
@@ -78,8 +78,8 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v DnsOverHttpsTemplates /t REG_
 **关于 DoH 服务器的选择：**
 
 - Cloudflare 的 `https://cloudflare-dns.com/dns-query`（`1.1.1.1`）是最常见的支持 ECH 密钥分发的 DoH 服务器，但在国内网络可能不可直连
-- 阿里 DNS 的 `https://dns.alidns.com/dns-query` 在国内可用，但不一定支持返回 HTTPS 类型 DNS 记录（ECH 所需）
-- 如果你有自建的 DoH 代理或中转服务器，使用你自己的 DoH 地址效果最好
+- 阿里 DNS 的 `https://dns.alidns.com/dns-query` 在国内可用，但不一定支持返回 HTTPS 类型 DNS 记录,不推荐（ECH 所需）
+- 如果你有自建的 DoH 代理或中转服务器，使用你自己的 DoH 地址效果最好，如linux.do站长秦始皇的doh地址是：https://xxx.ddd.oaifree.com/query-dns 其中 xxx 可以随便换，换成你喜欢的。
 
 **验证配置：**
 
@@ -162,6 +162,8 @@ Set-DnsClientDohServerAddress -ServerAddress "1.0.0.1" `
 | DNSSEC | ✅ 通过 |
 | TLS 1.3 | ✅ 通过 |
 | 安全 SNI (ECH) | ✅ 通过 |
+
+也可以用这个网站测试ech和doh情况：https://doh-ech.zhoulirui.ggff.net/
 
 ### 命令行测试
 
