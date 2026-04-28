@@ -1,5 +1,5 @@
 ---
-title: Windows Add-WindowsCapability 安装 OpenSSH Server 卡住，配置系统代理和 BITS 代理解决
+title: windows下安装openssh server卡顿的时候使用代理安装的方法
 abbrlink: 2026042801
 date: 2026-04-28 23:55:00
 tags:
@@ -11,7 +11,11 @@ tags:
 
 ## 问题现象
 
-在 Windows 11 上安装 OpenSSH Server：
+一开始我是从 Windows 的“设置 -> 系统 -> 可选功能 -> 查看功能”里添加 `OpenSSH 服务器`，界面一直停在“正在添加”，进度很慢：
+
+![可选功能里安装 OpenSSH 服务器卡住](/images/windows-openssh-server-optional-feature-stuck.png)
+
+后面不再等可选功能页面，改成用命令行安装和排查 OpenSSH Server：
 
 ```powershell
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
