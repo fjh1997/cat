@@ -1,5 +1,6 @@
 ---
 title: Headscale + Tailscale + sing-box for Android：利用家宽打洞实现公司环境安全“科学上网”
+mermaid: true
 abbrlink: 51814
 date: 2026-05-08 17:10:00
 tags:
