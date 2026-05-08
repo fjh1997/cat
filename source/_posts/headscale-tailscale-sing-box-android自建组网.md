@@ -1,5 +1,5 @@
 ---
-title: Headscale + Tailscale + sing-box for Android 自建组网记录
+title: Headscale + Tailscale + sing-box for Android：利用家宽打洞实现公司环境安全“科学上网”
 abbrlink: 51814
 date: 2026-05-08 17:10:00
 tags:
@@ -11,28 +11,34 @@ tags:
 
 ## 背景
 
-最近对网络合规、出口审计和个人流量隔离的要求越来越严格。为了不把个人设备的代理链路挂在办公网络出口上，我把个人访问链路放到了自有设备和自有宽带上：手机只负责接入自己的 tailnet，真正的代理入口放在家里的 Windows 电脑上。
+在当前的工作环境下，公司对网络合规和出口流量审计的要求日益严苛。办公网络不仅严查各类 VPN 协议，还会对所有通往境外的连接记录进行深度审计。为了在满足个人上网需求的同时，彻底避免将个人设备的代理链路暴露在办公网络出口上，我构建了一套基于“组网即代理”的方案。
 
-整体思路是：
+核心思路是利用家里的宽带作为唯一的“科学上网”出口，而办公环境下的手机仅作为一个纯粹的内网接入点，通过自建的 Tailscale 网络连接回自家的电脑进行“打洞”。具体设计动机如下：
 
-1. 阿里云 ECS 上部署 Headscale，作为 Tailscale 控制面。
-2. 家里的 Windows 电脑加入这个 tailnet，获得 `100.64.0.2`。
-3. 家里电脑本地运行 SOCKS5 服务，并监听 `100.64.0.2:10808` 可访问的端口。
-4. Android 上用 sing-box for Android 内置的 Tailscale endpoint 登录 Headscale。
-5. Android 的 TUN 流量最终转发到 tailnet 里的 `100.64.0.2:10808`。
+1. **规避办公网审计**：通过将真正的代理入口放在家里的 Windows 电脑上，手机在办公网环境下只产生与国内服务器（阿里云）或家宽公网 IP 的通信。所有对境外的访问流量均被封装在隧道内部，并最终在家宽出口解封，从而确保办公网出口没有任何境外 IP 的访问记录。
+2. **阿里云控制面（Headscale）**：为了实现稳定且不经过境外的控制平面，我在国内的**阿里云 ECS** 上部署了 **Headscale**（Tailscale 的开源替代方案）。需要注意，阿里云在这里仅作为**控制面（Control Plane）**负责节点发现和 NAT 穿透握手，**并不负责数据中转**。流量最终是通过 P2P 打洞直连到家里的，这样既保证了低延迟，也避免了阿里云因流量中转产生高昂的带宽费用。
+3. **完全物理隔离**：本方案实现了个人访问链路与办公网络的物理级隔离。办公网出口看到的只是前往阿里云的合规 HTTPS 流量，真正的互联网访问逻辑完全托管在自有设备和自有宽带上。
+
+### 整体思路
+
+1. **阿里云 ECS** 上部署 **Headscale**，作为 Tailscale 控制面（仅负责握手，记得关闭或不使用 DERP 中转，以节省阿里云流量）。
+2. **家里的 Windows 电脑** 加入这个 tailnet，作为代理网关，获得内网 IP `100.64.0.2`。
+3. **家里电脑** 本地运行 SOCKS5 服务（如 Clash/v2ray），并监听 `100.64.0.2:10808` 端口。
+4. **Android 手机** 使用 sing-box for Android，通过内置的 Tailscale endpoint 登录 Headscale。
+5. **手机流量路由**：Android 的 TUN 流量通过 Tailscale 隧道转发到家里的 `100.64.0.2:10808`。
 
 这样手机侧的链路是：
 
 ```text
 Android App 流量
   -> sing-box TUN
-  -> sing-box 内置 Tailscale endpoint
-  -> tailnet 内的 100.64.0.2:10808
-  -> 家里电脑上的 SOCKS5
-  -> 家里宽带出口
+  -> sing-box 内置 Tailscale endpoint (通过阿里云 Headscale 握手)
+  -> tailnet 内内的 100.64.0.2:10808 (加密隧道)
+  -> 家里电脑上的 SOCKS5 代理
+  -> 家里宽带出口 (真正的境外访问发生在这里)
 ```
 
-注意：这只是个人设备访问个人授权网络的记录。实际使用时要遵守所在单位、学校和网络服务提供方的规则。
+注意：这只是个人设备访问个人授权网络的记录。实际使用时要严格遵守所在单位、学校和网络服务提供方的安全合规准则。
 
 ## 版本要求
 
@@ -94,7 +100,7 @@ dns:
 
 derp:
   server:
-    enabled: true
+    enabled: false # 强烈建议关闭 DERP 服务，防止流量走阿里云中转产生巨额费用，确保家宽 P2P 直连
     automatically_add_embedded_derp_region: true
     region_id: 999
     region_code: headscale
