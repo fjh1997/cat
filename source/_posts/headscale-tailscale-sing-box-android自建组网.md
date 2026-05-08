@@ -27,6 +27,33 @@ tags:
 4. **Android 手机** 使用 sing-box for Android，通过内置的 Tailscale endpoint 登录 Headscale。
 5. **手机流量路由**：Android 的 TUN 流量通过 Tailscale 隧道转发到家里的 `100.64.0.2:10808`。
 
+技术架构示意图：
+
+```mermaid
+flowchart LR
+  subgraph Phone["Android 手机"]
+    App["App 流量"]
+    Tun["sing-box TUN"]
+    TsEndpoint["Tailscale endpoint<br/>ts-ep"]
+  end
+
+  subgraph Cloud["阿里云 ECS"]
+    Headscale["Headscale 控制面<br/>:8443"]
+  end
+
+  subgraph Home["家里宽带"]
+    Windows["Windows 网关<br/>100.64.0.2"]
+    Socks["SOCKS5 服务<br/>100.64.0.2:10808"]
+    HomeWan["家里宽带出口"]
+  end
+
+  App --> Tun --> TsEndpoint
+  TsEndpoint -.->|登录 / 节点发现 / NAT 打洞| Headscale
+  TsEndpoint ==>|加密 tailnet 连接| Socks
+  Windows --- Socks
+  Socks --> HomeWan
+```
+
 这样手机侧的链路是：
 
 ```text
