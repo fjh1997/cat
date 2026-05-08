@@ -146,41 +146,24 @@ RuntimeDirectory=headscale
 
 ## 家里 Windows 电脑的 Tailscale 配置
 
-本机 Tailscale 版本：
+Windows 端不需要额外写复杂配置，核心就是在 Headscale 服务端生成一个预授权 key，然后在 Windows 上用这个 key 加入自建控制面。
 
-```text
-1.96.3
+在 Headscale 服务端生成 Windows 节点使用的 key：
+
+```bash
+headscale preauthkeys create --user 1 --expiration 24h
 ```
 
-关键状态：
+如果希望这个 key 可以给多台设备重复使用，可以加 `--reusable`：
 
-```json
-{
-  "BackendState": "Running",
-  "TUN": true,
-  "ControlURL": "https://<HEADSCALE_DOMAIN>:8443",
-  "TailscaleIPs": [
-    "100.64.0.2",
-    "fd7a:115c:a1e0::2"
-  ],
-  "HostName": "home-windows-pc",
-  "DNSName": "home-windows-pc.<TAILNET_DNS_SUFFIX>.",
-  "OS": "windows"
-}
+```bash
+headscale preauthkeys create --user 1 --expiration 24h --reusable
 ```
 
-偏好配置里比较关键的是：
+然后在家里的 Windows 电脑上执行：
 
-```json
-{
-  "ControlURL": "https://<HEADSCALE_DOMAIN>:8443",
-  "RouteAll": true,
-  "CorpDNS": true,
-  "WantRunning": true,
-  "LoggedOut": false,
-  "NoStatefulFiltering": true,
-  "AllowSingleHosts": true
-}
+```powershell
+tailscale up --login-server https://<HEADSCALE_DOMAIN>:8443 --auth-key <WINDOWS_AUTH_KEY> --hostname home-windows-pc --accept-dns=true --accept-routes=true
 ```
 
 这台电脑上需要有一个 SOCKS5 服务监听 `10808`。如果只监听 `127.0.0.1:10808`，tailnet 里的手机访问不到；需要确保它监听在 `0.0.0.0:10808`，或者至少监听到 Tailscale 网卡的 `100.64.0.2:10808`，同时 Windows 防火墙允许 tailnet 访问这个端口。
@@ -188,6 +171,14 @@ RuntimeDirectory=headscale
 ## Android sing-box 配置
 
 Android 端不要同时开官方 Tailscale App 的 VPN。Android 通常只能稳定运行一个 VPN，SFA 的 TUN 已经占用 VPN 入口，所以这里让 sing-box 自己内置一个 Tailscale endpoint。
+
+Android 端同样需要先在 Headscale 服务端生成一个 auth key：
+
+```bash
+headscale preauthkeys create --user 1 --expiration 24h
+```
+
+如果只是给手机导入一次配置，建议使用一次性 key，不加 `--reusable`。生成出来的 key 填到下面 sing-box 配置的 `auth_key` 字段里。
 
 完整配置如下，`auth_key` 已脱敏：
 
