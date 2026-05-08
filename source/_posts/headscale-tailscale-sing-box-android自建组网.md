@@ -376,6 +376,24 @@ tailscale status
 tailscale debug prefs
 ```
 
+NAT 类型也要检查一下。Tailscale 打洞最怕的是两端都是对称型 NAT；办公网这边是对称型 NAT 问题不大，只要家宽这一端不是对称型 NAT，通常仍然可以打出直连。如果两端都是对称型 NAT，P2P 直连大概率失败，最终会退回 DERP 中转。
+
+在家里 Windows 电脑上跑：
+
+```powershell
+tailscale netcheck
+tailscale netcheck --format json
+```
+
+在办公网络侧也找一台同网段设备跑同样的命令：
+
+```powershell
+tailscale netcheck
+tailscale netcheck --format json
+```
+
+重点看输出里的 `MappingVariesByDestIP`。如果是 `true`，基本可以认为这一侧是对称型 NAT 或 hard NAT；如果是 `false`，打洞条件会好很多。本方案里最关键的是家宽侧尽量保持 `MappingVariesByDestIP: false`。
+
 sing-box 配置可以先用本地源码检查：
 
 ```powershell
