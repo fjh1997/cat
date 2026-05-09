@@ -208,7 +208,7 @@ headscale preauthkeys create --user 1 --expiration 24h
 
 如果只是给手机导入一次配置，建议使用一次性 key，不加 `--reusable`。生成出来的 key 填到下面 sing-box 配置的 `auth_key` 字段里。
 
-完整配置如下，`auth_key` 已脱敏：
+完整配置如下，`auth_key` 已脱敏。这一份是基础版，默认最终出站都是家里电脑的 SOCKS5：
 
 ```json
 {
@@ -337,6 +337,335 @@ headscale preauthkeys create --user 1 --expiration 24h
     "final": "proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": "local"
+  }
+}
+```
+
+### 国内外分流版本
+
+上面的基础版会把手机侧流量默认全部送到家里电脑的 `100.64.0.2:10808`。如果希望国内站点直连、国外站点仍然走家里 SOCKS5，可以使用下面这个分流版。它使用 `geosite-cn`、`geoip-cn` 做国内规则，国内 DNS 走 `223.5.5.5`，其他 DNS 默认走 Cloudflare DoH 并通过家里 SOCKS5 出口。
+
+这个版本会在首次启动时下载远程 `.srs` 规则集，后续由 `cache_file` 缓存。注意 `cn-dns` 这个 UDP DNS 服务器不要写 `"detour": "direct"`，新版 sing-box 会报 `detour to an empty direct outbound makes no sense`，因为 UDP DNS 默认就是直连。
+
+分流版完整配置如下，`auth_key` 和 Headscale 域名已脱敏：
+
+```json
+{
+  "log": {
+    "level": "info"
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "local",
+        "tag": "local"
+      },
+      {
+        "type": "udp",
+        "tag": "cn-dns",
+        "server": "223.5.5.5",
+        "server_port": 53
+      },
+      {
+        "type": "https",
+        "tag": "remote-dns",
+        "server": "1.1.1.1",
+        "server_port": 443,
+        "path": "/dns-query",
+        "tls": {
+          "server_name": "cloudflare-dns.com"
+        },
+        "detour": "proxy"
+      },
+      {
+        "type": "tailscale",
+        "tag": "ts-dns",
+        "endpoint": "ts-ep",
+        "accept_default_resolvers": false,
+        "accept_search_domain": true
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "<HEADSCALE_DOMAIN>"
+        ],
+        "action": "route",
+        "server": "local"
+      },
+      {
+        "preferred_by": [
+          "ts-dns"
+        ],
+        "action": "route",
+        "server": "ts-dns"
+      },
+      {
+        "domain": [
+          "googleapis.cn",
+          "gstatic.com"
+        ],
+        "domain_suffix": [
+          "googleapis.cn",
+          "gstatic.com"
+        ],
+        "action": "route",
+        "server": "remote-dns"
+      },
+      {
+        "rule_set": [
+          "geosite-category-ads-all"
+        ],
+        "action": "predefined",
+        "rcode": "NOERROR"
+      },
+      {
+        "rule_set": [
+          "geosite-private",
+          "geosite-cn"
+        ],
+        "action": "route",
+        "server": "cn-dns"
+      }
+    ],
+    "final": "remote-dns",
+    "strategy": "prefer_ipv4",
+    "timeout": "10s"
+  },
+  "endpoints": [
+    {
+      "type": "tailscale",
+      "tag": "ts-ep",
+      "state_directory": "tailscale-home",
+      "auth_key": "<REDACTED_AUTH_KEY>",
+      "control_url": "https://<HEADSCALE_DOMAIN>:8443",
+      "control_http_client": {
+        "domain_resolver": "local"
+      },
+      "hostname": "sfa-android",
+      "accept_routes": true,
+      "udp_timeout": "5m"
+    }
+  ],
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "dns_mode": "hijack",
+      "stack": "mixed",
+      "endpoint_independent_nat": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "socks",
+      "tag": "proxy",
+      "server": "100.64.0.2",
+      "server_port": 10808,
+      "version": "5",
+      "network": [
+        "tcp",
+        "udp"
+      ],
+      "detour": "ts-ep"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "port": 53,
+        "action": "hijack-dns"
+      },
+      {
+        "action": "sniff"
+      },
+      {
+        "preferred_by": [
+          "ts-ep"
+        ],
+        "action": "route",
+        "outbound": "ts-ep"
+      },
+      {
+        "domain": [
+          "googleapis.cn",
+          "gstatic.com"
+        ],
+        "domain_suffix": [
+          "googleapis.cn",
+          "gstatic.com"
+        ],
+        "action": "route",
+        "outbound": "proxy"
+      },
+      {
+        "rule_set": [
+          "geosite-category-ads-all"
+        ],
+        "action": "route",
+        "outbound": "block"
+      },
+      {
+        "network": [
+          "udp"
+        ],
+        "port": [
+          443
+        ],
+        "action": "route",
+        "outbound": "block"
+      },
+      {
+        "ip_is_private": true,
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geosite-private"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "ip_cidr": [
+          "223.5.5.5/32",
+          "223.6.6.6/32",
+          "2400:3200::1/128",
+          "2400:3200:baba::1/128",
+          "119.29.29.29/32",
+          "1.12.12.12/32",
+          "120.53.53.53/32",
+          "2402:4e00::/128",
+          "2402:4e00:1::/128",
+          "180.76.76.76/32",
+          "2400:da00::6666/128",
+          "114.114.114.114/32",
+          "114.114.115.115/32",
+          "114.114.114.119/32",
+          "114.114.115.119/32",
+          "114.114.114.110/32",
+          "114.114.115.110/32",
+          "180.184.1.1/32",
+          "180.184.2.2/32",
+          "101.226.4.6/32",
+          "218.30.118.6/32",
+          "123.125.81.6/32",
+          "140.207.198.6/32",
+          "1.2.4.8/32",
+          "210.2.4.8/32",
+          "52.80.66.66/32",
+          "117.50.22.22/32",
+          "2400:7fc0:849e:200::4/128",
+          "2404:c2c0:85d8:901::4/128",
+          "117.50.10.10/32",
+          "52.80.52.52/32",
+          "2400:7fc0:849e:200::8/128",
+          "2404:c2c0:85d8:901::8/128",
+          "117.50.60.30/32",
+          "52.80.60.30/32"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "domain": [
+          "alidns.com",
+          "doh.pub",
+          "dot.pub",
+          "360.cn",
+          "onedns.net"
+        ],
+        "domain_suffix": [
+          "alidns.com",
+          "doh.pub",
+          "dot.pub",
+          "360.cn",
+          "onedns.net"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geosite-cn"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-category-ads-all",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+        "http_client": {
+          "domain_resolver": "local"
+        },
+        "update_interval": "24h"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-private",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-private.srs",
+        "http_client": {
+          "domain_resolver": "local"
+        },
+        "update_interval": "24h"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
+        "http_client": {
+          "domain_resolver": "local"
+        },
+        "update_interval": "24h"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "http_client": {
+          "domain_resolver": "local"
+        },
+        "update_interval": "24h"
+      }
+    ],
+    "final": "proxy",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "local"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_dns": true
+    }
   }
 }
 ```
