@@ -149,14 +149,14 @@ tls_cert_path: /path/to/<HEADSCALE_DOMAIN>.cer
 tls_key_path: /path/to/<HEADSCALE_DOMAIN>.key
 ```
 
-同时创建 `/etc/headscale/derp-stun-only.yaml`，只下发 STUN，不提供可用 DERP 中继：
+同时创建 `/etc/headscale/derp-stun-only.yaml`，只下发 STUN，不提供可用 DERP 中继。这里可以配置多个 STUN 节点，让客户端在多出口网络里探测到更多 NAT 映射候选：
 
 ```yaml
 regions:
   999:
     regionid: 999
-    regioncode: stunonly
-    regionname: STUN Only Placeholder
+    regioncode: stun-self
+    regionname: Self STUN
     nodes:
       - name: 999a
         regionid: 999
@@ -164,9 +164,175 @@ regions:
         ipv4: <HEADSCALE_PUBLIC_IPV4>
         stunport: 3478
         derpport: 1
+
+  1000:
+    regionid: 1000
+    regioncode: stun-ali
+    regionname: Public STUN 39.107
+    nodes:
+      - name: 1000a
+        regionid: 1000
+        hostname: 39.107.142.158
+        ipv4: 39.107.142.158
+        stunport: 3478
+        derpport: 1
+
+  1001:
+    regionid: 1001
+    regioncode: stun-hitv
+    regionname: Public STUN HITV
+    nodes:
+      - name: 1001a
+        regionid: 1001
+        hostname: stun.hitv.com
+        stunport: 3478
+        derpport: 1
+
+  1002:
+    regionid: 1002
+    regioncode: stun-miwifi
+    regionname: Public STUN MiWiFi
+    nodes:
+      - name: 1002a
+        regionid: 1002
+        hostname: stun.miwifi.com
+        stunport: 3478
+        derpport: 1
+
+  1003:
+    regionid: 1003
+    regioncode: stun-bilibili
+    regionname: Public STUN Bilibili
+    nodes:
+      - name: 1003a
+        regionid: 1003
+        hostname: stun.chat.bilibili.com
+        stunport: 3478
+        derpport: 1
+
+  1004:
+    regionid: 1004
+    regioncode: stun-cloudflare
+    regionname: Public STUN Cloudflare
+    nodes:
+      - name: 1004a
+        regionid: 1004
+        hostname: stun.cloudflare.com
+        stunport: 3478
+        derpport: 1
+
+  1005:
+    regionid: 1005
+    regioncode: stun-nextcloud
+    regionname: Public STUN Nextcloud
+    nodes:
+      - name: 1005a
+        regionid: 1005
+        hostname: stun.nextcloud.com
+        stunport: 3478
+        derpport: 1
+
+  1006:
+    regionid: 1006
+    regioncode: stun-nextcloud-443
+    regionname: Public STUN Nextcloud 443
+    nodes:
+      - name: 1006a
+        regionid: 1006
+        hostname: stun.nextcloud.com
+        stunport: 443
+        derpport: 1
+
+  1007:
+    regionid: 1007
+    regioncode: stun-google-1
+    regionname: Public STUN Google 1
+    nodes:
+      - name: 1007a
+        regionid: 1007
+        hostname: stun1.l.google.com
+        stunport: 19302
+        derpport: 1
+
+  1008:
+    regionid: 1008
+    regioncode: stun-google-3
+    regionname: Public STUN Google 3
+    nodes:
+      - name: 1008a
+        regionid: 1008
+        hostname: stun3.l.google.com
+        stunport: 19302
+        derpport: 1
+
+  1009:
+    regionid: 1009
+    regioncode: stun-google-4
+    regionname: Public STUN Google 4
+    nodes:
+      - name: 1009a
+        regionid: 1009
+        hostname: stun4.l.google.com
+        stunport: 19302
+        derpport: 1
+
+  1010:
+    regionid: 1010
+    regioncode: stun-voipbuster
+    regionname: Public STUN Voipbuster
+    nodes:
+      - name: 1010a
+        regionid: 1010
+        hostname: stun.voipbuster.com
+        stunport: 3478
+        derpport: 1
+
+  1011:
+    regionid: 1011
+    regioncode: stun-voipstunt
+    regionname: Public STUN Voipstunt
+    nodes:
+      - name: 1011a
+        regionid: 1011
+        hostname: stun.voipstunt.com
+        stunport: 3478
+        derpport: 1
+
+  1012:
+    regionid: 1012
+    regioncode: stun-sipnet
+    regionname: Public STUN Sipnet
+    nodes:
+      - name: 1012a
+        regionid: 1012
+        hostname: stun.sipnet.net
+        stunport: 3478
+        derpport: 1
+
+  1013:
+    regionid: 1013
+    regioncode: stun-telnyx
+    regionname: Public STUN Telnyx
+    nodes:
+      - name: 1013a
+        regionid: 1013
+        hostname: stun.telnyx.com
+        stunport: 3478
+        derpport: 1
+
+  1014:
+    regionid: 1014
+    regioncode: stun-twilio
+    regionname: Public STUN Twilio
+    nodes:
+      - name: 1014a
+        regionid: 1014
+        hostname: global.stun.twilio.com
+        stunport: 3478
+        derpport: 1
 ```
 
-这里的效果是：Headscale 继续提供 STUN 给 `tailscale netcheck` 和打洞探测使用，但 DERP 中继端口不可用，打洞失败时不会通过服务器中转流量。
+这里的效果是：Headscale 继续提供 STUN 给 `tailscale netcheck` 和打洞探测使用，但 DERP 中继端口不可用，打洞失败时不会通过服务器中转流量。多 STUN 的意义是增加公网映射候选，尤其适合学校、公司这类可能按目标 IP 分配不同出口的网络；如果某个 STUN 服务器和真实 peer 目标走到同一个出口，直连打洞成功率会更高。
 
 systemd 服务使用发行版默认的 `headscale serve`：
 
@@ -363,9 +529,9 @@ headscale preauthkeys create --user 1 --expiration 24h
 
 ### 国内外分流版本
 
-上面的基础版会把手机侧流量默认全部送到家里电脑的 `100.64.0.2:10808`。如果希望国内站点直连、国外站点仍然走家里 SOCKS5，可以使用下面这个分流版。它使用 `geosite-cn`、`geoip-cn` 做国内规则，国内 DNS 走 `223.5.5.5`，其他 DNS 默认走 Cloudflare DoH 并通过家里 SOCKS5 出口。
+上面的基础版会把手机侧流量默认全部送到家里电脑的 `100.64.0.2:10808`。如果希望国内站点直连、国外站点仍然走家里 SOCKS5，可以使用下面这个分流版。它使用 `geosite-cn`、`geoip-cn` 做国内直连，使用 `geosite-geolocation-!cn` 做国外代理，国内 DNS 走 `223.5.5.5`，国外 DNS 走 Cloudflare DoH 并通过家里 SOCKS5 出口。没有命中规则的流量默认直连，避免微信这类国内 App 因规则缺失误走隧道。
 
-这个版本会在首次启动时下载远程 `.srs` 规则集，后续由 `cache_file` 缓存。注意 `cn-dns` 这个 UDP DNS 服务器不要写 `"detour": "direct"`，新版 sing-box 会报 `detour to an empty direct outbound makes no sense`，因为 UDP DNS 默认就是直连。
+这个版本会在首次启动时下载远程 `.srs` 规则集，后续由 `cache_file` 缓存。注意 `cn-dns` 这个 UDP DNS 服务器不要写 `"detour": "direct"`，新版 sing-box 会报 `detour to an empty direct outbound makes no sense`，因为 UDP DNS 默认就是直连。这里也不再全局阻断 UDP 443；阻断 QUIC 虽然能让部分连接回退到 TCP，但放在国内规则前面容易误伤微信、小程序和国内 App。
 
 分流版完整配置如下，`auth_key` 和 Headscale 域名已脱敏：
 
@@ -434,6 +600,13 @@ headscale preauthkeys create --user 1 --expiration 24h
       },
       {
         "rule_set": [
+          "geosite-geolocation-!cn"
+        ],
+        "action": "route",
+        "server": "remote-dns"
+      },
+      {
+        "rule_set": [
           "geosite-category-ads-all"
         ],
         "action": "predefined",
@@ -448,7 +621,7 @@ headscale preauthkeys create --user 1 --expiration 24h
         "server": "cn-dns"
       }
     ],
-    "final": "remote-dns",
+    "final": "cn-dns",
     "strategy": "prefer_ipv4",
     "timeout": "10s"
   },
@@ -521,6 +694,14 @@ headscale preauthkeys create --user 1 --expiration 24h
         "outbound": "ts-ep"
       },
       {
+        "package_name": [
+          "com.tencent.mm",
+          "com.tencent.mobileqq"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
         "domain": [
           "googleapis.cn",
           "gstatic.com"
@@ -540,14 +721,11 @@ headscale preauthkeys create --user 1 --expiration 24h
         "outbound": "block"
       },
       {
-        "network": [
-          "udp"
-        ],
-        "port": [
-          443
+        "rule_set": [
+          "geosite-geolocation-!cn"
         ],
         "action": "route",
-        "outbound": "block"
+        "outbound": "proxy"
       },
       {
         "ip_is_private": true,
@@ -648,6 +826,16 @@ headscale preauthkeys create --user 1 --expiration 24h
       },
       {
         "type": "remote",
+        "tag": "geosite-geolocation-!cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
+        "http_client": {
+          "domain_resolver": "local"
+        },
+        "update_interval": "24h"
+      },
+      {
+        "type": "remote",
         "tag": "geosite-private",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-private.srs",
@@ -677,7 +865,7 @@ headscale preauthkeys create --user 1 --expiration 24h
         "update_interval": "24h"
       }
     ],
-    "final": "proxy",
+    "final": "direct",
     "auto_detect_interface": true,
     "default_domain_resolver": "local"
   },
@@ -703,6 +891,8 @@ headscale preauthkeys create --user 1 --expiration 24h
 ```
 
 `detour: ts-ep` 表示连接 SOCKS5 服务本身时先走 Tailscale endpoint。没有这个字段，Android 的普通网络无法直接访问 `100.64.0.2`。
+
+分流规则的关键点是：微信和 QQ 先按包名强制 `direct`，避免国内 IM 流量误走家里 SOCKS5；`geosite-geolocation-!cn` 明确送到 `proxy`，用于国外站点；`final` 保持 `direct`，让未知流量默认直连。不要把 UDP 443 阻断规则放在国内规则前面，否则微信、小程序或国内 App 的 QUIC/UDP 连接可能先被拦截，表现为发消息慢、加载卡顿。
 
 ## 启动顺序
 
