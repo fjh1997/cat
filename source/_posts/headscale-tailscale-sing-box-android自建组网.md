@@ -127,18 +127,19 @@ dns:
       - 2606:4700:4700::1001
 
 derp:
+  auto_update_enabled: false
+  paths:
+    - /etc/headscale/derp-stun-only.yaml
   server:
-    enabled: false # 强烈建议关闭 DERP 服务，防止流量走阿里云中转产生巨额费用，确保家宽 P2P 直连
-    automatically_add_embedded_derp_region: true
+    enabled: true # 启用内置 STUN，继续监听 UDP 3478
+    automatically_add_embedded_derp_region: false # 不把内置 DERP 加入 DERP map，避免客户端走 DERP 中转
     region_id: 999
     region_code: headscale
     region_name: Headscale Embedded DERP
     stun_listen_addr: 0.0.0.0:3478
     private_key_path: <REDACTED>
     verify_clients: true
-  urls:
-    - https://controlplane.tailscale.com/derpmap/default
-  auto_update_enabled: true
+  urls: []
   update_frequency: 3h
 
 noise:
@@ -147,6 +148,25 @@ noise:
 tls_cert_path: /path/to/<HEADSCALE_DOMAIN>.cer
 tls_key_path: /path/to/<HEADSCALE_DOMAIN>.key
 ```
+
+同时创建 `/etc/headscale/derp-stun-only.yaml`，只下发 STUN，不提供可用 DERP 中继：
+
+```yaml
+regions:
+  999:
+    regionid: 999
+    regioncode: stunonly
+    regionname: STUN Only Placeholder
+    nodes:
+      - name: 999a
+        regionid: 999
+        hostname: <HEADSCALE_DOMAIN>
+        ipv4: <HEADSCALE_PUBLIC_IPV4>
+        stunport: 3478
+        derpport: 1
+```
+
+这里的效果是：Headscale 继续提供 STUN 给 `tailscale netcheck` 和打洞探测使用，但 DERP 中继端口不可用，打洞失败时不会通过服务器中转流量。
 
 systemd 服务使用发行版默认的 `headscale serve`：
 
