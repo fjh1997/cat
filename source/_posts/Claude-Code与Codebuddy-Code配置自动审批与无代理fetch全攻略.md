@@ -16,11 +16,12 @@ Claude Code 的配置文件位于 `~/.claude/settings.json`（Windows 为 `%USER
 
 ### 1.1 自动审批（无需手动确认）
 
-在 `settings.json` 中添加 `permissions` 字段即可跳过所有权限弹窗：
+Claude Code 的权限系统核心是 `defaultMode`，它决定了工具调用的默认审批行为。将其设为 `bypassPermissions` 即可跳过所有权限弹窗：
 
 ```json
 {
   "permissions": {
+    "defaultMode": "bypassPermissions",
     "allow": [
       "Bash(*)",
       "WebFetch",
@@ -34,17 +35,20 @@ Claude Code 的配置文件位于 `~/.claude/settings.json`（Windows 为 `%USER
 }
 ```
 
-各条目含义：
+**`defaultMode` 的可选值**（这是 Claude Code 权限系统的关键，很多人只配了 `allow` 却没生效，就是缺了这个）：
 
-| 条目 | 作用 |
+| 模式 | 行为 |
 |------|------|
-| `Bash(*)` | 允许执行任意 Bash 命令 |
-| `WebFetch` | 允许抓取网页内容 |
-| `WebSearch` | 允许网络搜索 |
-| `Edit(*)` | 允许编辑任意文件 |
-| `Write(*)` | 允许写入/创建任意文件 |
-| `Read(*)` | 允许读取任意文件 |
-| `NotebookEdit(*)` | 允许编辑 Jupyter Notebook |
+| `default` | 标准行为：首次使用每个工具时弹窗确认 |
+| `acceptEdits` | 自动接受文件编辑和常见文件操作（mkdir、touch、mv、cp 等） |
+| `plan` | 计划模式：只读，不编辑源文件 |
+| `auto` | 自动审批工具调用，但有后台安全检查（研究预览功能） |
+| `dontAsk` | 未在 `allow` 中预审批的工具自动拒绝（而非弹窗询问） |
+| **`bypassPermissions`** | **跳过所有权限弹窗**，仅保留 `rm -rf /` 和 `rm -rf ~` 的硬编码熔断保护 |
+
+**为什么 `defaultMode` 才是关键**：只配 `allow` 列表而不设 `defaultMode`，Claude Code 仍然会对未匹配的工具弹出确认框。`bypassPermissions` 是全局开关，`allow` 列表则用于更细粒度的控制（如只允许特定命令 `Bash(npm run *)` 而非全部）。两者配合使用效果最佳。
+
+> ⚠️ `bypassPermissions` 会跳过对 `.git`、`.claude`、`.vscode` 等目录的写入保护，建议仅在隔离环境（容器、虚拟机）中使用。
 
 如果你还想跳过危险模式的二次确认提示，再加上：
 
@@ -106,6 +110,7 @@ $env:NODE_TLS_REJECT_UNAUTHORIZED = "0"
   "skipWebFetchPreflight": true,
   "skipDangerousModePermissionPrompt": true,
   "permissions": {
+    "defaultMode": "bypassPermissions",
     "allow": [
       "Bash(*)",
       "WebFetch",
@@ -125,7 +130,7 @@ Codebuddy Code 的配置文件位于 `~/.codebuddy/config.json`（Windows 为 `%
 
 ### 2.1 自动审批
 
-Codebuddy Code 同样支持权限白名单模式，在配置文件中设置 `permissions.defaultMode` 为 `bypassPermissions`，并在 `allow` 列表中声明允许的操作：
+Codebuddy Code 同样采用 `defaultMode` + `allow` 白名单的权限模型，配置方式与 Claude Code 一致：
 
 ```json
 {
@@ -144,7 +149,7 @@ Codebuddy Code 同样支持权限白名单模式，在配置文件中设置 `per
 }
 ```
 
-- `defaultMode: "bypassPermissions"` 表示默认跳过权限审批
+- `defaultMode: "bypassPermissions"` 是关键全局开关，跳过所有权限审批
 - `allow` 列表定义了具体允许的工具操作，与 Claude Code 的写法一致
 
 ### 2.2 让 Fetch 正常工作
