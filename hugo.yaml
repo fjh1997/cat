@@ -81,7 +81,7 @@ params:
     - name: friend
       url: "friend"
       icon:
-  banner: "images/blue.webp"
+  banner: "/images/blue.webp"
   avatar: "avatar.webp"
   toc: true
   open_graph:
@@ -147,6 +147,31 @@ params:
       - monospace
   dark_mode:
     enable: auto
+  material_theme:
+    enable: false
+  internal_theme:
+    light:
+      --red-0: "#0078d7"
+      --red-1: "#009bff"
+      --red-2: "#36b7ff"
+      --red-3: "#81d4ff"
+      --red-4: "#b9e8ff"
+      --red-5: "#e1f5ff"
+      --red-5-5: "#eefaff"
+      --red-6: "#f6fcff"
+      --color-red-6-shadow: "rgba(0, 155, 255, 0.45)"
+      --color-red-3-shadow: "rgba(0, 155, 255, 0.25)"
+    dark:
+      --red-0: "#36b7ff"
+      --red-1: "#36b7ff"
+      --red-2: "#81d4ff"
+      --red-3: "#9edfff"
+      --red-4: "rgba(129, 212, 255, 0.5)"
+      --red-5: "rgba(54, 183, 255, 0.15)"
+      --red-5-5: "rgba(54, 183, 255, 0.08)"
+      --red-6: "rgba(54, 183, 255, 0.2)"
+      --color-red-6-shadow: "rgba(0, 155, 255, 0.35)"
+      --color-red-3-shadow: "rgba(0, 155, 255, 0.2)"
   mermaid:
     zoom: false
   code_block:
