@@ -1,0 +1,8 @@
+{{- define "main" -}}
+  {{- $pageSize := .Site.Params.paginate.post | default 10 -}}
+  {{- $paginator := .Paginate .RegularPagesRecursive $pageSize -}}
+  {{- range $index, $page := $paginator.Pages -}}
+    {{- partial "post.html" (dict "index" $index "ctx" . "page" $page) -}}
+  {{- end -}}
+  {{- partial "pagination.html" . -}}
+{{- end -}}

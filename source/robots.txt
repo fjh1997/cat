@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /js/
-Disallow: /css/
-Disallow: /lib/
-Disallow: /page/
-Disallow: /images/
-
-Sitemap: https://csdn.fjh1997.top/sitemap.xml

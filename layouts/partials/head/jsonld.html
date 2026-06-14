@@ -1,0 +1,64 @@
+{{- $scripts := slice -}}
+{{- $author := dict "@type" "Person" "name" .Site.Params.author "url" .Site.BaseURL -}}
+
+{{- if .IsHome -}}
+  {{- $scripts = $scripts | append (dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "name" .Site.Title
+    "url" .Site.BaseURL
+    "description" .Site.Params.description
+    "inLanguage" .Site.Language.Lang
+    "author" $author
+  ) -}}
+{{- end -}}
+
+{{- if and .IsPage (in .Site.Params.mainSections .Section) -}}
+  {{- $description := partial "helpers/description.html" . -}}
+  {{- $posting := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "headline" .Title
+    "url" .Permalink
+    "datePublished" (.Date.Format "2006-01-02T15:04:05-07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+    "author" $author
+    "publisher" (dict "@type" "Organization" "name" .Site.Title "url" .Site.BaseURL)
+    "description" $description
+    "inLanguage" .Site.Language.Lang
+  -}}
+  {{- with .Params.cover -}}
+    {{- if not (strings.HasPrefix . "rgb") -}}
+      {{- $posting = merge $posting (dict "image" (. | absURL)) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with .Params.tags -}}
+    {{- $posting = merge $posting (dict "keywords" (delimit . ", ")) -}}
+  {{- end -}}
+  {{- $scripts = $scripts | append $posting -}}
+{{- end -}}
+
+{{- $items := slice (dict
+  "@type" "ListItem"
+  "position" 1
+  "name" .Site.Title
+  "item" .Site.BaseURL
+) -}}
+{{- if not .IsHome -}}
+  {{- $items = $items | append (dict
+    "@type" "ListItem"
+    "position" 2
+    "name" (.Title | default .RelPermalink)
+    "item" .Permalink
+  ) -}}
+{{- end -}}
+{{- $scripts = $scripts | append (dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" $items
+) -}}
+
+{{- range $scripts }}
+<script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{- end -}}

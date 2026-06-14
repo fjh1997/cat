@@ -1,9 +1,9 @@
-media: source/images
+media: static/images
 
 content:
   - name: posts
     label: 文章
-    path: source/_posts
+    path: content/posts
     type: collection
     view:
       fields: [title, date, tags]
@@ -21,10 +21,10 @@ content:
         required: true
         options:
           format: yyyy-MM-dd HH:mm:ss
-      - name: abbrlink
-        label: 永久链接ID
-        type: number
-        description: 由 hexo-abbrlink 自动生成，通常无需手动修改
+      - name: url
+        label: 永久链接
+        type: string
+        description: Hugo 固定文章 URL，请保持 /posts/数字.html 不变
       - name: tags
         label: 标签
         type: string
@@ -46,7 +46,7 @@ content:
 
   - name: about
     label: 关于页面
-    path: source/about/index.md
+    path: content/about/index.md
     type: file
     fields:
       - name: title
@@ -64,7 +64,7 @@ content:
 
   - name: friend
     label: 友链页面
-    path: source/friend/index.md
+    path: content/friend/index.md
     type: file
     fields:
       - name: title

