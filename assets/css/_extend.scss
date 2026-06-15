@@ -1,6 +1,22 @@
 #header > img,
 #header > picture img {
-  object-position: center 75%;
+  object-position: center;
+}
+
+#header {
+  margin-bottom: unquote("max(320px, 28vh)");
+}
+
+@media screen and (max-width: 959px) {
+  #header {
+    margin-bottom: unquote("max(80px, 7vh)");
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #header {
+    margin-bottom: 0;
+  }
 }
 
 @mixin base-style {
