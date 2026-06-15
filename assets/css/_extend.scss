@@ -1,19 +1,31 @@
 #header > img,
 #header > picture img {
-  object-position: center;
+  height: 140%;
+  object-position: center 85%;
 }
 
 #header {
-  margin-bottom: unquote("max(320px, 28vh)");
+  margin-bottom: unquote("max(160px, 14vh)");
 }
 
 @media screen and (max-width: 959px) {
+  #header > img,
+  #header > picture img {
+    height: 120%;
+    object-position: center;
+  }
+
   #header {
     margin-bottom: unquote("max(80px, 7vh)");
   }
 }
 
 @media screen and (max-width: 767px) {
+  #header > img,
+  #header > picture img {
+    height: 100%;
+  }
+
   #header {
     margin-bottom: 0;
   }
