@@ -4,5 +4,7 @@ db.json
 *.log
 node_modules/
 public/
+resources/
+.hugo_build.lock
 .deploy*/
 _multiconfig.yml

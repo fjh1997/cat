@@ -1,0 +1,12 @@
+{{- $desc := "" -}}
+{{- if .Params.description -}}
+  {{- $desc = .Params.description -}}
+{{- else if .Summary -}}
+  {{- $desc = .Summary -}}
+{{- else if .RawContent -}}
+  {{- $desc = .RawContent -}}
+{{- else -}}
+  {{- $desc = .Site.Params.description -}}
+{{- end -}}
+{{- $desc = $desc | plainify | htmlUnescape | replaceRE "\\s+" " " | strings.TrimSpace | truncate 150 -}}
+{{- return $desc -}}

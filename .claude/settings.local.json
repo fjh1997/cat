@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -c \"categories:\" \"c:/Users/54930/Desktop/backup/CSDN/source/_posts/\"*.md)",
+      "Bash(npx hexo clean)",
+      "Bash(npx hexo generate)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npm install hexo-filter-nofollow --save)"
+    ]
+  }
+}

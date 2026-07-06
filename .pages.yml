@@ -1,0 +1,78 @@
+media: static/images
+
+content:
+  - name: posts
+    label: 文章
+    path: content/posts
+    type: collection
+    view:
+      fields: [title, date, tags]
+      sort: date
+      default:
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd HH:mm:ss
+      - name: url
+        label: 永久链接
+        type: string
+        description: Hugo 固定文章 URL，请保持 /posts/数字.html 不变
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: categories
+        label: 分类
+        type: string
+        list: true
+      - name: description
+        label: 摘要描述
+        type: text
+        description: 用于 SEO meta description，留空则自动从正文提取
+      - name: cover
+        label: 封面图
+        type: image
+      - name: body
+        label: 正文
+        type: rich-text
+
+  - name: about
+    label: 关于页面
+    path: content/about/index.md
+    type: file
+    fields:
+      - name: title
+        label: 标题
+        type: string
+      - name: date
+        label: 日期
+        type: date
+      - name: comments
+        label: 开启评论
+        type: boolean
+      - name: body
+        label: 正文
+        type: rich-text
+
+  - name: friend
+    label: 友链页面
+    path: content/friend/index.md
+    type: file
+    fields:
+      - name: title
+        label: 标题
+        type: string
+      - name: comments
+        label: 开启评论
+        type: boolean
+      - name: body
+        label: 正文
+        type: rich-text
