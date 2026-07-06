@@ -1,7 +1,12 @@
 ---
 title: 使用mosdns-x实现DNS分流：白名单域名走DoH代理并自动回退
+abbrlink: 2026070601
+url: /posts/2026070601.html
 date: 2026-07-06 16:00:00
 tags:
+  - DNS
+  - mosdns
+  - macOS
 ---
 ## 背景
 
