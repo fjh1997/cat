@@ -7,6 +7,7 @@ tags:
   - DNS
   - mosdns
   - macOS
+  - Windows
 ---
 ## 背景
 
@@ -59,7 +60,7 @@ dnsproxy 支持按域名分流上游，但有两个致命问题：
 
 ## 部署
 
-### 安装
+### macOS 安装
 
 ```bash
 # 通过代理下载（直连 GitHub 可能慢）
@@ -203,7 +204,7 @@ servers:
         addr: "127.0.0.1:53"
 ```
 
-### launchd 服务
+### macOS launchd 服务
 
 创建 `/Library/LaunchDaemons/com.mosdns.plist`：
 
@@ -239,6 +240,154 @@ networksetup -setdnsservers Wi-Fi 127.0.0.1
 sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
 ```
 
+### Windows 部署为系统服务
+
+Windows 不建议把 `mosdns.exe` 直接放进注册表启动项或交互式计划任务。`mosdns.exe` 是控制台程序，这样做在登录时会弹出黑框；如果同时配置了多个启动入口，还会出现多个实例争用 53 端口、任务返回 `0xFFFFFFFF` 等问题。
+
+mosdns-x 自带 Windows 服务管理功能，正确做法是将其注册为系统服务。以下步骤已在 Windows 11、mosdns-x `v4.6.0`（build `26.05.25`）上验证。
+
+#### 1. 准备目录和文件
+
+从 [mosdns-x Releases](https://github.com/pmkol/mosdns-x/releases) 下载 `mosdns-windows-amd64.zip`，解压后整理成：
+
+```text
+C:\mosdns\
+├── mosdns.exe
+├── config.yaml
+└── whitelist.txt
+```
+
+Windows 版配置逻辑与前文一致，只需要把文件路径换成 Windows 路径。YAML 中推荐使用正斜杠，避免反斜杠转义：
+
+```yaml
+log:
+  file: "C:/mosdns/mosdns.log"
+  level: error
+
+data_providers:
+  - tag: doh_whitelist
+    file: "C:/mosdns/whitelist.txt"
+    auto_reload: true
+```
+
+中间的 `plugins` 配置直接沿用前文。`servers` 可以同时监听 IPv4 和 IPv6 回环地址：
+
+```yaml
+servers:
+  - exec: main_sequence
+    timeout: 5
+    listeners:
+      - protocol: udp
+        addr: "127.0.0.1:53"
+      - protocol: tcp
+        addr: "127.0.0.1:53"
+      - protocol: udp
+        addr: "[::1]:53"
+      - protocol: tcp
+        addr: "[::1]:53"
+```
+
+先在管理员 PowerShell 中检查版本和配置能否启动：
+
+```powershell
+Set-Location C:\mosdns
+.\mosdns.exe version
+.\mosdns.exe start -c C:\mosdns\config.yaml
+```
+
+看到四个监听器正常启动后按 `Ctrl+C` 退出，再安装服务。
+
+#### 2. 安装并启动 Windows 服务
+
+仍在管理员 PowerShell 中执行：
+
+```powershell
+Set-Location C:\mosdns
+
+# 注册为开机自动启动的 Windows 服务
+.\mosdns.exe service install -d C:\mosdns -c C:\mosdns\config.yaml
+
+# install 只负责注册，不会立即启动
+.\mosdns.exe service start
+
+# 查看 mosdns 自带的服务状态
+.\mosdns.exe service status
+
+# 也可以通过 Windows SCM 查看
+Get-Service -Name mosdns
+```
+
+正常情况下，服务应显示为 `Running`，启动类型为 `Automatic`，登录桌面时也不会出现控制台窗口。
+
+> 该服务功能由 mosdns-x 内置的 `service` 子命令提供。官方说明其底层基于 `kardianos/service`，Windows 已实测可用，但仍建议安装后检查服务、监听端口和实际 DNS 解析结果。
+
+#### 3. 将 Windows DNS 指向本机
+
+先查看正在使用的物理网卡名称：
+
+```powershell
+Get-NetAdapter | Where-Object Status -eq Up
+```
+
+假设网卡名为 `以太网`，执行：
+
+```powershell
+netsh interface ipv4 set dnsservers name="以太网" static 127.0.0.1 primary validate=no
+netsh interface ipv6 set dnsservers name="以太网" static ::1 primary validate=no
+Clear-DnsClientCache
+```
+
+如果使用 Wi-Fi，把命令中的 `以太网` 换成实际接口名。只需要修改当前上网的物理网卡，不要批量修改 WSL、Hyper-V、VMware、Tailscale、WireGuard 等虚拟网卡。
+
+#### 4. 验证服务、端口和解析
+
+```powershell
+# 服务必须处于 Running
+Get-Service -Name mosdns
+
+# 127.0.0.1 和 ::1 的 TCP/UDP 53 应归同一个 mosdns PID
+Get-NetUDPEndpoint -LocalPort 53
+Get-NetTCPConnection -LocalPort 53 -State Listen
+
+# 测试普通 DNS 和白名单域名
+Resolve-DnsName baidu.com -Server 127.0.0.1 -DnsOnly
+Resolve-DnsName google.com -Server 127.0.0.1 -DnsOnly
+Resolve-DnsName github.com -Server 127.0.0.1 -DnsOnly
+```
+
+mosdns 服务会早于用户登录启动，而 xray 的 `127.0.0.1:10808` 可能稍后才就绪。此时白名单查询暂时走 `secondary` 普通 DNS 回退是预期行为；xray 启动后，后续查询会自动恢复使用 Cloudflare DoH。
+
+#### 5. 避免重复启动
+
+确认服务运行正常后，不要再保留同名计划任务或注册表启动项。可以先检查：
+
+```powershell
+Get-ScheduledTask -TaskName mosdns -ErrorAction SilentlyContinue
+Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run `
+  -Name mosdns -ErrorAction SilentlyContinue
+```
+
+如果这些入口是以前手动创建的，可以删除：
+
+```powershell
+Unregister-ScheduledTask -TaskName mosdns -Confirm:$false -ErrorAction SilentlyContinue
+Remove-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run `
+  -Name mosdns -ErrorAction SilentlyContinue
+```
+
+服务日常管理命令：
+
+```powershell
+Set-Location C:\mosdns
+.\mosdns.exe service restart
+.\mosdns.exe service stop
+.\mosdns.exe service start
+
+# 确实不再使用时才卸载
+.\mosdns.exe service stop
+.\mosdns.exe service uninstall
+```
+
 ## 架构说明
 
 ```
@@ -262,7 +411,7 @@ sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
 
 **自动回退**：`fast_fallback: 300` 表示 DoH 请求超过 300ms 未响应时，自动发起普通 DNS 查询作为备选。`always_standby: false` 表示不预先发起备选查询，仅在超时后才回退，减少不必要的查询。
 
-**白名单热更新**：`auto_reload: true` 让 mosdns 监控白名单文件变化，编辑 `/opt/homebrew/etc/mosdns/whitelist.txt` 后自动生效，无需重启服务。
+**白名单热更新**：`auto_reload: true` 让 mosdns 监控白名单文件变化。macOS 编辑 `/opt/homebrew/etc/mosdns/whitelist.txt`，Windows 编辑 `C:\mosdns\whitelist.txt`，保存后都会自动生效，无需重启服务。
 
 ## 验证
 
@@ -302,12 +451,12 @@ sudo mv /Library/LaunchDaemons/com.doh-relay.plist \
 
 ## 配置文件位置
 
-| 文件 | 路径 |
-|---|---|
-| 主配置 | `/opt/homebrew/etc/mosdns/config.yaml` |
-| 白名单 | `/opt/homebrew/etc/mosdns/whitelist.txt` |
-| 日志 | `/opt/homebrew/var/log/mosdns.log` |
-| launchd | `/Library/LaunchDaemons/com.mosdns.plist` |
+| 文件 | macOS | Windows |
+|---|---|---|
+| 主配置 | `/opt/homebrew/etc/mosdns/config.yaml` | `C:\mosdns\config.yaml` |
+| 白名单 | `/opt/homebrew/etc/mosdns/whitelist.txt` | `C:\mosdns\whitelist.txt` |
+| 日志 | `/opt/homebrew/var/log/mosdns.log` | `C:\mosdns\mosdns.log` |
+| 自启动方式 | `/Library/LaunchDaemons/com.mosdns.plist` | 内置 `mosdns` Windows 服务 |
 
 重启命令：
 
