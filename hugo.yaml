@@ -1,4 +1,4 @@
-baseURL: "https://csdn.fjh1997.top/"
+baseURL: "https://cat.fjh1997.top/"
 title: "猫猫鱼的小窝"
 theme: "reimu"
 languageCode: "zh-CN"
@@ -197,7 +197,7 @@ params:
     default: utterances
   utterances:
     enable: true
-    repo: "fjh1997/CSDN"
+    repo: "fjh1997/cat"
     issue_term: title
     theme: auto
   algolia_search:
@@ -305,4 +305,4 @@ params:
   pace:
     enable: true
   injector:
-    body_end: '<a href="https://app.pagescms.org/fjh1997/CSDN/main" target="_blank" rel="noopener nofollow" style="position:fixed;bottom:60px;left:16px;z-index:999;width:36px;height:36px;border-radius:50%;background:var(--red-2,#009bff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.15);opacity:.5;transition:opacity .2s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.5" title="管理后台">&#9998;</a>'
+    body_end: '<a href="https://app.pagescms.org/fjh1997/cat/main" target="_blank" rel="noopener nofollow" style="position:fixed;bottom:60px;left:16px;z-index:999;width:36px;height:36px;border-radius:50%;background:var(--red-2,#009bff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.15);opacity:.5;transition:opacity .2s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.5" title="管理后台">&#9998;</a>'

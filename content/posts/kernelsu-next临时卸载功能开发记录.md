@@ -10,7 +10,7 @@ tags:
 
 ![a437e43e787927e26a27af9cd6e7f7a6](/images/a437e43e787927e26a27af9cd6e7f7a6.jpeg)
 基于kernelsu next 3.1.0做了一个支持lkm模式下临时卸载模块的功能。现在无需和少部分牛逼的root检测app斗智斗勇了（比如bochk用的promon shield方案），要用检测root的app的时候临时卸载就行。临时卸载会短暂黑屏，就检测不到了，欢迎参加测试。网上的一些root检测app可能还是能检测到异常，很正常，能过app即可。
-使用claude opus4.6开发，修复了pstore以记录内核和app崩溃日志，如果pstore无效可以使用[高通自带方案](https://csdn.fjh1997.top/posts/25235.html)dump日志，
+使用claude opus4.6开发，修复了pstore以记录内核和app崩溃日志，如果pstore无效可以使用[高通自带方案](https://cat.fjh1997.top/posts/25235.html)dump日志，
 开源地址：https://github.com/fjh1997/KernelSU-Next
 
 pstore修复方案如下：

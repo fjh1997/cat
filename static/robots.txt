@@ -6,4 +6,4 @@ Disallow: /lib/
 Disallow: /page/
 Disallow: /images/
 
-Sitemap: https://csdn.fjh1997.top/sitemap.xml
+Sitemap: https://cat.fjh1997.top/sitemap.xml
