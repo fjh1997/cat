@@ -18,9 +18,13 @@ PC / 手机打开浙江移动宽带「查看进度」进入一站式订单详情
 
 **代码**：[https://github.com/fjh1997/wx-zjmcrm-whitescreen-fix](https://github.com/fjh1997/wx-zjmcrm-whitescreen-fix)
 
-![白屏](/images/698b423a573848effaa4044be371f986.png)
+**修复前：** 一站式订单详情白屏，无进度内容。
 
-![修复后](/images/8770db89f2a5a9346ff7fe0379e29973.png)
+![修复前：一站式订单详情白屏](/images/698b423a573848effaa4044be371f986.png)
+
+**修复后：** 进度时间线正常展示（本例订单状态为已取消）。
+
+![修复后：订单进度正常展示](/images/8770db89f2a5a9346ff7fe0379e29973.png)
 
 <!--more-->
 
