@@ -1,0 +1,81 @@
+# Windows sample for mosdns-x (C:/mosdns/config.yaml)
+# Default domains: plain UDP DNS. Whitelist: Cloudflare DoH via local SOCKS5.
+log:
+  file: "C:/mosdns/mosdns.log"
+  level: info
+
+data_providers:
+  - tag: doh_whitelist
+    file: "C:/mosdns/whitelist.txt"
+    auto_reload: true
+
+plugins:
+  - tag: cache
+    type: cache
+    args:
+      size: 4096
+      lazy_cache_ttl: 86400
+
+  # Default upstream: multi UDP (no proxy)
+  - tag: forward_default
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "223.5.5.5"
+          trusted: true
+        - addr: "223.6.6.6"
+          trusted: true
+        - addr: "119.29.29.29"
+          trusted: true
+
+  # Whitelist: Cloudflare DoH via xray/v2rayN SOCKS5
+  - tag: forward_doh
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "https://cloudflare-dns.com/dns-query"
+          dial_addr: "1.1.1.1:443"
+          socks5: "127.0.0.1:10808"
+          trusted: true
+          idle_timeout: 30
+
+  - tag: query_is_whitelist
+    type: query_matcher
+    args:
+      domain:
+        - "provider:doh_whitelist"
+
+  - tag: whitelist_handler
+    type: sequence
+    args:
+      exec:
+        - primary:
+            - forward_doh
+          secondary:
+            - forward_default
+          fast_fallback: 500
+          always_standby: false
+
+  - tag: main_sequence
+    type: sequence
+    args:
+      exec:
+        - cache
+        - if: query_is_whitelist
+          exec:
+            - whitelist_handler
+            - _return
+        - forward_default
+
+servers:
+  - exec: main_sequence
+    timeout: 5
+    listeners:
+      - protocol: udp
+        addr: "127.0.0.1:53"
+      - protocol: tcp
+        addr: "127.0.0.1:53"
+      - protocol: udp
+        addr: "[::1]:53"
+      - protocol: tcp
+        addr: "[::1]:53"
