@@ -93,7 +93,8 @@ params:
     since: 2020
     powered: true
     count: true
-    busuanzi: true
+    # busuanzi is a third-party counter on critical path; disable for PageSpeed third-party budget.
+    busuanzi: false
     icon:
       url: "../images/taichi.png"
       rotate: true
@@ -123,22 +124,27 @@ params:
     archive: 10
     post: 10
   reimu_cursor:
-    enable: true
+    # Custom cursors add extra image requests; system cursor is enough for speed.
+    enable: false
     cursor:
       default: "../images/cursor/reimu-cursor-default.png"
       pointer: "../images/cursor/reimu-cursor-pointer.png"
       text: "../images/cursor/reimu-cursor-text.png"
   icon_font: "4552607_4k4bc36ef96"
   font:
-    enable: true
+    # Prefer local/system fonts to avoid Google Fonts (slow + large CJK CSS).
+    enable: false
     article:
       - Mulish
       - Noto Serif SC
   local_font:
     article:
       - "-apple-system"
+      - "BlinkMacSystemFont"
+      - "Segoe UI"
       - PingFang SC
-      - Microsoft YaHei
+      - "Hiragino Sans GB"
+      - "Microsoft YaHei"
       - sans-serif
     code:
       - Menlo
@@ -187,9 +193,10 @@ params:
       enable: false
       count: 50
       license_type: by-nc-sa
+  # Keep one lightweight analytics for CN; GA (~470KB) + Clarity (cross-border RTT) hurt TBT/FCP.
   baidu_analytics: "5da340ea9593c887a216551c55233b7d"
-  google_analytics: "G-23KTRMMFYL"
-  clarity: "v6glba4v65"
+  google_analytics: ""
+  clarity: ""
   comment:
     title:
       zh-CN: "说些什么吧！"
@@ -205,15 +212,18 @@ params:
   generator_search:
     enable: true
     field: post
-    content: true
+    # Full-text index bloats search.json (~300KB+); titles + summary are enough for site search.
+    content: false
   preloader:
-    enable: true
+    # Full-screen loader masks real paint time and waits for late scripts.
+    enable: false
     text:
       zh-CN: "少女祈祷中..."
       en: "Loading..."
     rotate: true
   animation:
-    enable: true
+    # AOS CSS/JS + non-composited animations flagged by PageSpeed; disable for speed.
+    enable: false
     options:
       header:
         title: slide-up
@@ -237,8 +247,8 @@ params:
         section: fade-up
         nav: fade-up
   firework:
-    enable: true
-    disable_on_mobile: false
+    enable: false
+    disable_on_mobile: true
     options:
       excludeElements:
         - a
@@ -303,6 +313,7 @@ params:
     priority: true
     ignores: []
   pace:
-    enable: true
+    # pace.js is render-blocking in <head>; disable so first paint is not gated on it.
+    enable: false
   injector:
     body_end: '<a href="https://app.pagescms.org/fjh1997/cat/main" target="_blank" rel="noopener nofollow" style="position:fixed;bottom:60px;left:16px;z-index:999;width:36px;height:36px;border-radius:50%;background:var(--red-2,#009bff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.15);opacity:.5;transition:opacity .2s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.5" title="管理后台">&#9998;</a>'

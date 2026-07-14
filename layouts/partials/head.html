@@ -58,7 +58,7 @@
 {{- if .Site.Params.icon_font -}}
   <link
     rel="preload"
-    href="//at.alicdn.com/t/c/font_{{ .Site.Params.icon_font }}.woff2"
+    href="https://at.alicdn.com/t/c/font_{{ .Site.Params.icon_font }}.woff2"
     as="font"
     type="font/woff2"
     crossorigin="anonymous"
@@ -133,10 +133,13 @@
 <!-- favicon use default -->
 <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
 {{- partial "helpers/scss.html" (dict "source" "css/main.scss" "temp" "main.scss" "target" "css/main.css" "ctx" .) -}}
-<!-- photo-swipe -->
-{{- partial "helpers/cdnCss.html" (dict "name" "photoswipe" "ctx" . "async" true) -}}
-<!-- katex -->
-{{- partial "helpers/cdnCss.html" (dict "name" "katex" "ctx" . "async" true) -}}
+{{- /* Only load heavy optional CSS on pages that need it (cuts unused CSS / transfer). */ -}}
+{{- if not .IsHome -}}
+  {{- partial "helpers/cdnCss.html" (dict "name" "photoswipe" "ctx" . "async" true) -}}
+{{- end -}}
+{{- if .Params.math -}}
+  {{- partial "helpers/cdnCss.html" (dict "name" "katex" "ctx" . "async" true) -}}
+{{- end -}}
 <!-- waline -->
 {{- if and .Site.Params.waline.enable .Site.Params.waline.serverURL -}}
   {{- partial "helpers/cdnCss.html" (dict "name" "waline" "ctx" .) -}}
@@ -147,7 +150,7 @@
 {{- end -}}
 <!-- pace -->
 {{- if .Site.Params.pace.enable -}}
-  {{- partial "helpers/cdnJs.html" (dict "name" "pace" "ctx" .) -}}
+  {{- partial "helpers/cdnJs.html" (dict "name" "pace" "ctx" . "async" true) -}}
 {{- end -}}
 <!-- aos -->
 {{- if .Site.Params.animation.enable -}}

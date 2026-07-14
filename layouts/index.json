@@ -1,11 +1,18 @@
 [
 {{- $pages := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+{{- $includeContent := .Site.Params.generator_search.content | default false -}}
 {{- range $index, $page := $pages.ByDate.Reverse -}}
   {{- if gt $index 0 }},{{ end }}
+  {{- $snippet := "" -}}
+  {{- if $includeContent -}}
+    {{- $snippet = printf "%s %s %s" $page.Title ($page.Params.description | default "") ($page.Plain | default $page.RawContent) -}}
+  {{- else -}}
+    {{- $snippet = printf "%s %s" $page.Title ($page.Params.description | default ($page.Summary | plainify | truncate 160)) -}}
+  {{- end -}}
   {
     "title": {{ $page.Title | jsonify }},
     "url": {{ $page.RelPermalink | jsonify }},
-    "content": {{ (printf "%s %s %s" $page.Title ($page.Params.description | default "") ($page.Plain | default $page.RawContent) | replaceRE "\\s+" " " | strings.TrimSpace) | jsonify }}
+    "content": {{ ($snippet | replaceRE "\\s+" " " | strings.TrimSpace) | jsonify }}
   }
 {{- end }}
 ]

@@ -3,19 +3,20 @@
 {{- $js := hugo.Data.vendor.js -}}
 {{- $css := hugo.Data.vendor.css -}}
 
-{{- partial "helpers/cdnJs.html" (dict "name" "lazysizes" "ctx" .) }}
-{{- partial "helpers/cdnJs.html" (dict "name" "clipboard" "ctx" .) }}
+{{- partial "helpers/cdnJs.html" (dict "name" "lazysizes" "ctx" . "defer" true) }}
+{{- partial "helpers/cdnJs.html" (dict "name" "clipboard" "ctx" . "defer" true) }}
 
 {{- if $params.material_theme.enable -}}
-  {{- partial "helpers/cdnJs.html" (dict "name" "material_theme" "ctx" .) -}}
+  {{- partial "helpers/cdnJs.html" (dict "name" "material_theme" "ctx" . "defer" true) -}}
 {{- end -}}
 
-{{- partial "helpers/ts.html" (dict "source" "js/main.ts" "ctx" .) -}}
+{{- partial "helpers/ts.html" (dict "source" "js/main.ts" "ctx" . "defer" true) -}}
 
 {{- if $params.animation.enable -}}
-  {{- partial "helpers/ts.html" (dict "source" "js/aos.ts" "ctx" .) -}}
+  {{- partial "helpers/ts.html" (dict "source" "js/aos.ts" "ctx" . "defer" true) -}}
   <script>
     var aosInit = () => {
+      if (!window.AOS) return;
       AOS.init({
         duration: 1000,
         easing: "ease",
@@ -31,7 +32,7 @@
   </script>
 {{- end -}}
 
-{{- partial "helpers/ts.html" (dict "source" "js/pjax_main.ts" "pjax" true "ctx" .) -}}
+{{- partial "helpers/ts.html" (dict "source" "js/pjax_main.ts" "pjax" true "ctx" . "defer" true) -}}
 
 {{- if $params.algolia_search.enable -}}
   <script>
@@ -93,14 +94,20 @@
 {{- end -}}
 
 {{- if $params.quicklink.enable -}}
-  {{- partial "helpers/cdnJs.html" (dict "name" "quicklink" "ctx" .) -}}
-  <script data-pjax>
-    window.quicklink?.listen({
-      timeout: {{ $params.quicklink.timeout }},
-      priority: {{ $params.quicklink.priority }},
-      ignores: JSON.parse({{ $params.quicklink.ignores | jsonify }})
-    });
+  <script>
+    window.__quicklinkTimeout = {{ $params.quicklink.timeout }};
+    window.__quicklinkPriority = {{ $params.quicklink.priority }};
+    window.__quicklinkIgnores = JSON.parse({{ $params.quicklink.ignores | jsonify }});
+    window.__setupQuicklink = function () {
+      if (!window.quicklink) return;
+      window.quicklink.listen({
+        timeout: window.__quicklinkTimeout,
+        priority: window.__quicklinkPriority,
+        ignores: window.__quicklinkIgnores,
+      });
+    };
   </script>
+  {{- partial "helpers/cdnJs.html" (dict "name" "quicklink" "ctx" . "defer" true "onload" "window.__setupQuicklink()") -}}
 {{ end }}
 
 <div id="lazy-script">
@@ -124,20 +131,47 @@
         };
       </script>
     {{- end -}}
-    {{- if and (.Store.Get "hasMermaid") .Params.mermaid -}}
-      {{- partial "helpers/cdnJs.html" (dict "name" "mermaid" "ctx" . "pjax" true) -}}
-      {{- partial "helpers/cdnJs.html" (dict "name" "dompurify" "ctx" . "pjax" true) -}}
+    {{- /* Mermaid is ~1MB gzip; only load when page has diagrams, and only after idle so FCP/LCP are not blocked. */ -}}
+    {{- if .Store.Get "hasMermaid" -}}
+      {{- $mermaidSrc := index (partial "helpers/vendorCdn.html" (dict "item" $js.mermaid "ctx" $site)) 0 -}}
+      {{- $mermaidIntegrity := index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.mermaid)) 0 -}}
+      {{- $dompurifySrc := index (partial "helpers/vendorCdn.html" (dict "item" $js.dompurify "ctx" $site)) 0 -}}
+      {{- $dompurifyIntegrity := index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.dompurify)) 0 -}}
+      {{- $svgPanZoomSrc := "" -}}
+      {{- $svgPanZoomIntegrity := "" -}}
       {{- if $params.mermaid.zoom -}}
-        {{- partial "helpers/cdnJs.html" (dict "name" "svg_pan_zoom" "ctx" . "pjax" true) -}}
+        {{- $svgPanZoomSrc = index (partial "helpers/vendorCdn.html" (dict "item" $js.svg_pan_zoom "ctx" $site)) 0 -}}
+        {{- $svgPanZoomIntegrity = index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.svg_pan_zoom)) 0 -}}
       {{- end -}}
       <script data-pjax>
-        if (window.mermaid) {
-          // https://github.com/mermaid-js/mermaid/issues/1945
-          const elementCode = '.mermaid'
+        (function () {
+          const elementCode = '.mermaid';
+          const sources = [
+            { src: '{{ $mermaidSrc }}', integrity: '{{ $mermaidIntegrity }}' },
+            { src: '{{ $dompurifySrc }}', integrity: '{{ $dompurifyIntegrity }}' },
+            {{- if $params.mermaid.zoom -}}
+            { src: '{{ $svgPanZoomSrc }}', integrity: '{{ $svgPanZoomIntegrity }}' },
+            {{- end -}}
+          ];
+
+          const loadScript = (item) => new Promise((resolve, reject) => {
+            if (!item || !item.src) return resolve();
+            if (document.querySelector('script[src="' + item.src + '"]')) return resolve();
+            const s = document.createElement('script');
+            s.src = item.src;
+            s.async = true;
+            if (item.integrity) {
+              s.integrity = item.integrity;
+              s.crossOrigin = 'anonymous';
+            }
+            s.onload = () => resolve();
+            s.onerror = () => reject(new Error('Failed to load ' + item.src));
+            document.body.appendChild(s);
+          });
+
           const processElements = (callback) => {
-            const els = _$$(elementCode);
+            const els = (typeof _$$ === 'function' ? _$$(elementCode) : document.querySelectorAll(elementCode));
             if (!els.length) return Promise.resolve();
-            
             return new Promise((resolve, reject) => {
               try {
                 els.forEach(callback);
@@ -147,33 +181,35 @@
               }
             });
           };
-          const saveOriginalData = () => processElements(el => {
+
+          const saveOriginalData = () => processElements((el) => {
             if (!el.getAttribute('data-original-code')) {
               el.setAttribute('data-original-code', el.innerHTML);
             }
           });
 
-          const resetProcessed = () => processElements(el => {
+          const resetProcessed = () => processElements((el) => {
             const originalCode = el.getAttribute('data-original-code');
             if (originalCode) {
               el.removeAttribute('data-processed');
-              el.innerHTML = DOMPurify.sanitize(originalCode);
+              el.innerHTML = (window.DOMPurify ? window.DOMPurify.sanitize(originalCode) : originalCode);
             }
           });
+
           const loadMermaid = async (theme) => {
-            window.mermaid.initialize({theme, startOnLoad: false})
-            await window.mermaid.run({querySelector: elementCode, suppressErrors: true})
-            if (window.svgPanZoom) {
-              window.__panZoomList?.forEach(panZoom => {try {panZoom.destroy()} catch {}});
+            window.mermaid.initialize({ theme, startOnLoad: false });
+            await window.mermaid.run({ querySelector: elementCode, suppressErrors: true });
+            if (window.svgPanZoom && typeof _$$ === 'function') {
+              window.__panZoomList?.forEach((panZoom) => { try { panZoom.destroy(); } catch {} });
               window.__panZoomList = [];
-              _$$('.mermaid > svg').forEach(el => {
+              _$$('.mermaid > svg').forEach((el) => {
                 const bbox = el.getBBox();
                 el.setAttribute('height', Math.max(bbox.height, 80));
                 window.__panZoomList.push(window.svgPanZoom(el, {
                   zoomEnabled: true,
                   controlIconsEnabled: true,
                   fit: true,
-                  center: true
+                  center: true,
                 }));
               });
               if (window.__resizeMermaidSvg) {
@@ -181,7 +217,7 @@
               }
               window.__resizeMermaidSvg = () => {
                 try {
-                  window.__panZoomList.forEach(panZoom => {
+                  window.__panZoomList.forEach((panZoom) => {
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
@@ -190,12 +226,23 @@
                   window.removeEventListener('resize', window.__resizeMermaidSvg);
                   window.__panZoomList = [];
                 }
-              }
+              };
               window.addEventListener('resize', window.__resizeMermaidSvg);
             }
-          }
+          };
+
+          const ensureLibs = async () => {
+            if (!window.mermaid) {
+              for (const item of sources) {
+                await loadScript(item);
+              }
+            }
+          };
+
           const initMermaid = async (theme) => {
             try {
+              await ensureLibs();
+              if (!window.mermaid) return;
               await saveOriginalData();
               await resetProcessed();
               await loadMermaid(theme);
@@ -203,26 +250,37 @@
               console.error(error);
             }
           };
-          
+
+          const resolveTheme = () => {
+            const mode = localStorage.getItem('dark_mode');
+            if (mode === 'auto') {
+              return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+            }
+            return mode === 'true' ? 'dark' : 'default';
+          };
+
           document.body.addEventListener('reimu:theme-set', (e) => {
-            const isDark = e.detail.isDark;
-            initMermaid(isDark ? 'dark' : 'default');
+            initMermaid(e.detail.isDark ? 'dark' : 'default');
           });
 
-          const mode = localStorage.getItem('dark_mode');
-          if (mode === 'auto') {
-            const osMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            initMermaid(osMode ? 'dark' : 'default');
-          } else {
-            initMermaid(mode === 'true' ? 'dark' : 'default');
-          }
-        }
+          const schedule = () => {
+            const boot = () => initMermaid(resolveTheme());
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(boot, { timeout: 2500 });
+            } else if (document.readyState === 'complete') {
+              setTimeout(boot, 0);
+            } else {
+              window.addEventListener('load', () => setTimeout(boot, 0), { once: true });
+            }
+          };
+          schedule();
+        })();
       </script>
     {{- end -}}
     {{- if not .IsHome -}}
-      {{- partial "helpers/ts.html" (dict "source" "js/insert_highlight.ts" "pjax" true "ctx" .) -}}
+      {{- partial "helpers/ts.html" (dict "source" "js/insert_highlight.ts" "pjax" true "ctx" . "defer" true) -}}
       {{- if or $params.anchor.explicit.enable $params.anchor.auto.enable -}}
-        {{- partial "helpers/ts.html" (dict "source" "js/anchor.ts" "pjax" true "ctx" .) -}}
+        {{- partial "helpers/ts.html" (dict "source" "js/anchor.ts" "pjax" true "ctx" . "defer" true) -}}
       {{- end -}}
       {{- partial "helpers/ts.html" (dict "source" "js/tabs.ts" "pjax" true "ctx" . "defer" true) -}}
       {{- $photoswipe_lightbox := index (partial "helpers/vendorCdn.html" (dict "item" $js.photoswipe_lightbox "ctx" $site)) 0 -}}

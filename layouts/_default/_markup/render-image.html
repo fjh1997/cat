@@ -1,0 +1,23 @@
+{{- $dest := .Destination | safeURL -}}
+{{- $alt := .Text | default "" -}}
+{{- $title := .Title | default "" -}}
+{{- $path := .Destination -}}
+{{- $path = strings.TrimPrefix "https://cat.fjh1997.top/" $path -}}
+{{- $path = strings.TrimPrefix "http://cat.fjh1997.top/" $path -}}
+{{- $path = strings.TrimPrefix "/" $path -}}
+{{- if strings.Contains $path "?" -}}{{- $path = index (split $path "?") 0 -}}{{- end -}}
+{{- if strings.Contains $path "#" -}}{{- $path = index (split $path "#") 0 -}}{{- end -}}
+{{- $cfg := false -}}
+{{- if fileExists (printf "static/%s" $path) -}}
+  {{- $cfg = imageConfig (printf "static/%s" $path) -}}
+{{- else if fileExists $path -}}
+  {{- $cfg = imageConfig $path -}}
+{{- end -}}
+<img
+  src="{{ $dest }}"
+  alt="{{ $alt }}"
+  {{- if $title }} title="{{ $title }}"{{ end -}}
+  {{- with $cfg }} width="{{ .Width }}" height="{{ .Height }}"{{ end }}
+  loading="lazy"
+  decoding="async"
+/>
