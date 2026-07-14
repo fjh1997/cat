@@ -102,7 +102,7 @@ var param = {
 
 用仓库中的 `minimal_fix.py`：
 
-1. **请求改写**：命中 `QRY_RBOSS_MOBILE_DETAIL` 时，把 body 改成明文 14 位；  
+1. **请求改写**：命中 `QRY_RBOSS_MOBILE_DETAIL` 时，把 body 改成明文 14 位（按 **action 路径** 命中，不依赖域名；Host 显示为 IP 时也能改）；  
 2. **JS 热补**：`oneStationUser.js` 组参不再 `aesEncrypt`，并带上 `retCode` 判断。
 
 核心请求改写：
@@ -131,17 +131,47 @@ def request(flow):
 #   → "customerOrderId": "5790xxxxxxxxxx"
 ```
 
+#### 操作步骤（按这个顺序）
+
 ```powershell
 git clone https://github.com/fjh1997/wx-zjmcrm-whitescreen-fix.git
 cd wx-zjmcrm-whitescreen-fix
 pip install mitmproxy pycryptodome
 
-# 可选：指定自己的订单号
+# 1) 设订单号兜底（强烈建议；AES 解不出时靠它）
 $env:ZJ_ORDER_ID="你的14位订单号"
+# 可选：$env:ZJ_AES_KEY="从 GET_STATIC_DATA 拿到的密钥"
 
-mitmdump -p 8888 -s .\minimal_fix.py --ssl-insecure --set block_global=false
-# ProxyBridge：Weixin.exe / WeChatAppEx.exe → 127.0.0.1:8888
+# 2) 启动 mitm（推荐仓库脚本，保证 env 传入子进程）
+.\start_minimal.ps1
+# 等价手动：cmd /c "set ZJ_ORDER_ID=你的14位订单号&& mitmdump -p 8888 -s minimal_fix.py --ssl-insecure --set block_global=false"
+
+# 3) ProxyBridge 必须以【管理员】运行
+#    Weixin.exe / WeChatAppEx.exe → 127.0.0.1:8888
+#    非管理员会立刻退出 = 等于没挂代理
+
+# 4) 完全退出微信 PC 端再打开 → 一站式订单 → 查看进度
 ```
+
+#### 验收（必看）
+
+打开仓库目录下的 `minimal_fix.log`：
+
+| 日志 | 含义 |
+|------|------|
+| `DETAIL body -> plain {...}` | 改写已生效 |
+| `DETAIL resp retCode=200` | 网关返回进度 |
+| `rewrote oneStationUser.js` | JS 热补命中 |
+| **只有 `ready`，没有 DETAIL** | 流量没进 mitm：检查管理员 ProxyBridge、是否重启微信 |
+
+#### 常见翻车
+
+| 现象 | 原因 | 处理 |
+|------|------|------|
+| 一直白屏 | 代理没挂上 / 未重启微信 | 管理员 PB + 杀干净微信 |
+| `WARN: no plain order id` | 未设 `ZJ_ORDER_ID` 且解不出密文 | 设订单号后重启 mitmdump |
+| 系统异常 /「请输入正确的 URL」 | 乱改 Host/CONNECT 把其它站点指到 CRM | **不要**把 `218.205.68.*` 全改成 CRM 域名（如 `wap.zj.10086.cn` 会被搞挂） |
+| 证书报错 | 未信任 mitm CA | 安装 mitmproxy CA 到受信任根证书 |
 
 ## 小结
 
@@ -149,6 +179,7 @@ mitmdump -p 8888 -s .\minimal_fix.py --ssl-insecure --set block_global=false
 |--|--|
 | **根因** | 详情订单号多做了 AES，字段超长被网关拒绝 |
 | **修复** | 提交明文 14 位订单号 |
+| **落地** | 管理员进程代理 + mitm 改 body；以 `minimal_fix.log` 的 `DETAIL body -> plain` 为成功标志 |
 | **仓库** | [wx-zjmcrm-whitescreen-fix](https://github.com/fjh1997/wx-zjmcrm-whitescreen-fix) |
 
 仅供自有账号排障与学习，请勿用于未授权访问。
