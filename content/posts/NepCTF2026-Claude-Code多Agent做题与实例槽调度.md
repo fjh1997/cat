@@ -321,7 +321,7 @@ work_root = ~/nepctf（非 /tmp）
 
 ## 相关
 
-- **题解博文**：[NepCTF 2026 WriteUp（猫娘手写本 · rank 20）](/posts/202607202.html)
+- **题解博文**：[NepCTF 2026 WriteUp（猫娘手写本 · rank 20）](/posts/202607202.html) · [完整包 zip](https://github.com/fjh1997/nepctf2026-writeup/releases/download/v1.0.0/nepctf2026-writeup-catcatyu-rank20.zip)
 - **可复现项目**：[ctf-agent-dispatch](https://github.com/fjh1997/ctf-agent-dispatch) · [zip v0.2.1](https://github.com/fjh1997/ctf-agent-dispatch/releases/download/v0.2.1/ctf-agent-dispatch-0.2.1.zip)
 - 平台：`https://www.nepctf.com`，`game_id=2`
 
