@@ -321,8 +321,8 @@ work_root = ~/nepctf（非 /tmp）
 
 ## 相关
 
-- **可复现项目**：[ctf-agent-dispatch](https://github.com/fjh1997/ctf-agent-dispatch) · [zip v0.1.0](https://github.com/fjh1997/ctf-agent-dispatch/releases/download/v0.1.0/ctf-agent-dispatch-0.1.0.zip)
-- 队内 WP（手写风 + 完整代码）：赛后提交的 27 题本，路径在本机 `nepctf/WriteUp_*.md` / `20-catcatyu-549308442.pdf`
+- **题解博文**：[NepCTF 2026 WriteUp（猫娘手写本 · rank 20）](/posts/202607202.html)
+- **可复现项目**：[ctf-agent-dispatch](https://github.com/fjh1997/ctf-agent-dispatch) · [zip v0.2.1](https://github.com/fjh1997/ctf-agent-dispatch/releases/download/v0.2.1/ctf-agent-dispatch-0.2.1.zip)
 - 平台：`https://www.nepctf.com`，`game_id=2`
 
 —— 调度比模型版本号更决定能吃下几道远程题。
