@@ -3,7 +3,7 @@ title: NepCTF 2026 WriteUp（猫娘手写本 · rank 20 · 完整自包含）
 abbrlink: 202607202
 url: /posts/202607202.html
 date: 2026-07-20 18:30:00
-lastmod: 2026-07-20 19:00:00
+lastmod: 2026-07-20 22:40:00
 tags:
   - CTF
   - NepCTF
@@ -17,9 +17,19 @@ categories:
 ---
 
 NepCTF 2026 队名 **catcatyu**，**rank 20 / 1011**，**6916** 分，**27** 题 AC。  
-本文与赛后提交 PDF 同级：**手写风 + 解题代码全文内联**（完整自包含）。
+本文与赛后提交 PDF **完全同级**：**手写风 + 解题代码全文内联**（完整自包含，无「详见提交包」占位）。
 
-调度侧另文：[多 Agent 做题与实例槽调度](/posts/202607201.html) · 可复现包 [ctf-agent-dispatch](https://github.com/fjh1997/ctf-agent-dispatch)。
+## 完整目录下载（PDF + work/exp）
+
+| 资源 | 链接 |
+|------|------|
+| **zip 一键下载** | [nepctf2026-writeup-catcatyu-rank20.zip](https://github.com/fjh1997/nepctf2026-writeup/releases/download/v1.0.0/nepctf2026-writeup-catcatyu-rank20.zip)（约 7MB） |
+| GitHub 仓库 | [fjh1997/nepctf2026-writeup](https://github.com/fjh1997/nepctf2026-writeup) |
+| Release | [v1.0.0](https://github.com/fjh1997/nepctf2026-writeup/releases/tag/v1.0.0) |
+
+解压后含：`writeup/20-catcatyu-549308442.pdf`、`WriteUp_完整自包含.md`、各题 `work/<id>/flag.txt` + `exp/` + `repro/`。
+
+调度侧另文：[多 Agent 做题与实例槽调度](/posts/202607201.html) · [ctf-agent-dispatch](https://github.com/fjh1997/ctf-agent-dispatch)。
 
 <!--more-->
 
@@ -7686,3 +7696,12 @@ if __name__ == '__main__':
 - 二进制依赖（libc.so 等）不往 PDF 里塞，脚本同目录说明即可。
 
 —— catcatyu，写完揉揉耳朵，收工喵。
+
+---
+
+## 附件下载
+
+完整目录（PDF + 各题 exp/repro）：
+
+- **zip**：[nepctf2026-writeup-catcatyu-rank20.zip](https://github.com/fjh1997/nepctf2026-writeup/releases/download/v1.0.0/nepctf2026-writeup-catcatyu-rank20.zip)
+- 仓库：https://github.com/fjh1997/nepctf2026-writeup
