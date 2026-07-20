@@ -35,10 +35,9 @@ NepCTF 2026 用 Claude Code 当「总控 + 工人」：主会话只盯榜单和�
 curl -L -o ctf-agent-dispatch-0.2.0.zip \
   https://github.com/fjh1997/ctf-agent-dispatch/releases/download/v0.2.0/ctf-agent-dispatch-0.2.0.zip
 unzip ctf-agent-dispatch-0.2.0.zip && cd ctf-agent-dispatch-0.2.0
-python3 -m venv .venv && . .venv/bin/activate
-pip install -r requirements.txt
-python scripts/selftest.py
-# 期望输出: SELFTEST_OK / preempt path: REMOTE_ONLY#71 -> READY#64
+claude
+# 会话启动后会自动 bootstrap + 跑 mock 抢槽 demo
+# 纯 CLI 验收: bash scripts/bootstrap.sh && ./.venv/bin/python scripts/selftest.py
 ```
 
 仓库内还包含：
