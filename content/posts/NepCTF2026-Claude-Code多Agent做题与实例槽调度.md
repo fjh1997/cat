@@ -32,9 +32,9 @@ NepCTF 2026 用 Claude Code 当「总控 + 工人」：主会话只盯榜单和�
 | Release 页 | [v0.1.1](https://github.com/fjh1997/ctf-agent-dispatch/releases/tag/v0.1.1)（含根 `CLAUDE.md` + `.claude/agents/`） |
 
 ```bash
-curl -L -o ctf-agent-dispatch-0.1.0.zip \
-  https://github.com/fjh1997/ctf-agent-dispatch/releases/download/v0.1.0/ctf-agent-dispatch-0.1.0.zip
-unzip ctf-agent-dispatch-0.1.0.zip && cd ctf-agent-dispatch-0.1.0
+curl -L -o ctf-agent-dispatch-0.1.1.zip \
+  https://github.com/fjh1997/ctf-agent-dispatch/releases/download/v0.1.1/ctf-agent-dispatch-0.1.1.zip
+unzip ctf-agent-dispatch-0.1.1.zip && cd ctf-agent-dispatch-0.1.1
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 python scripts/selftest.py
